@@ -1,0 +1,259 @@
+<section class="section">
+
+
+
+    <div class="container-fluid">
+
+        <!-- ========== title-wrapper start ========== -->
+        <div class="title-wrapper pt-20">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <!-- <div class="title mb-30">
+                        <h2>{{title}}</h2>
+                    </div> -->
+
+                    <div *ngIf="successMessageVisible" class="alert-box success-alert  alert-custom">
+                        <!-- <div class="left">
+                <h5 class="text-bold">Success</h5>
+            </div> -->
+                        <div class="alert">
+                            <!-- <h4 class="alert-heading">Success</h4> -->
+                            <p class="text-medium">
+                                Sản phẩm đã được thêm thành công.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!-- end col -->
+                <div class="col-md-6">
+                    <div class="breadcrumb-wrapper">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item">
+                                    <a href="">Quản Lý</a>
+                                </li>
+                                <li class="breadcrumb-item active" aria-current="page">
+                                    {{title}}
+                                </li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+                <!-- end col -->
+            </div>
+            <!-- end row -->
+        </div>
+        <!-- ========== title-wrapper end ========== -->
+
+        <div class="row">
+            <!-- End Col -->
+            <div class="col-lg-12">
+                <div class="card-style mb-30">
+                    <div class="
+                            title
+                            d-flex
+                            flex-wrap
+                            align-items-center
+                            justify-content-between
+                        ">
+                        <div class="left">
+                            <h6 class="text-medium mb-30">Thông tin {{title}}</h6>
+                        </div>
+                        <div class="right">
+                            <div class="select-style-1" style="color: #fff;">
+                                <button type="button" class="btn-add main-btn success-btn-outline rounded-md btn-hover" data-toggle="modal" data-target="#addModal">
+                                    <i  class="btn-add lni lni-circle-plus trans"></i>Thêm mới</button>
+                            </div>
+                            <!-- end select -->
+                        </div>
+                    </div>
+                    <!-- End Title -->
+                    <div class="table-responsive">
+                        <table class="table top-selling-table">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        <h6 class="text-sm text-medium">Sản phẩm</h6>
+                                    </th>
+                                    <th class="min-width">
+                                        <h6 class="text-sm text-medium">
+                                            Loại Sản Phẩm <i class="lni lni-arrows-vertical"></i>
+                                        </h6>
+                                    </th>
+                                    <th class="min-width">
+                                        <h6 class="text-sm text-medium">
+                                            Giá sản phẩm <i class="lni lni-arrows-vertical"></i>
+                                        </h6>
+                                    </th>
+                                    <th class="min-width">
+                                        <h6 class="text-sm text-medium">
+                                            Nhà cung cấp <i class="lni lni-arrows-vertical"></i>
+                                        </h6>
+                                    </th>
+                                    <!-- <th class="min-width">
+                                        <h6 class="text-sm text-medium">
+                                            Status <i class="lni lni-arrows-vertical"></i>
+                                        </h6>
+                                    </th> -->
+                                    <th>
+                                        <h6 class="text-sm text-medium text-end">
+                                            Actions <i class="lni lni-arrows-vertical"></i>
+                                        </h6>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let item of sanPhams">
+                                    <td>
+                                        <div class="product">
+                                            <div class="image">
+                                                <img src="http://localhost:3000/uploads/{{ item.Anh }}" alt="{{ item.TenSanPham }}" />
+                                            </div>
+                                            <p class="text-sm">{{ item.TenSanPham }}</p>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <p class="text-sm">{{ item.MoTaSanPham }}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-sm">${{ item.Gia }}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-sm">{{ item.TenNSX }}</p>
+                                    </td>
+                                    <!-- <td>
+                                        <span class="status-btn close-btn">Pending</span>
+                                    </td> -->
+                                    <td>
+                                        <div class="action justify-content-end">
+                                            <button class="edit">
+                                                <i class="lni lni-eye"></i>
+                                            </button>
+                                            <button class="more-btn ml-10 dropdown-toggle" id="moreAction1" data-bs-toggle="dropdown" aria-expanded="false">
+                                                <i class="lni lni-more-alt"></i>
+                                            </button>
+                                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="moreAction1">
+                                                <li class="dropdown-item">
+                                                    <a href="#0" class="text-gray">
+                                                        <i class="lni lni-trash-can trans color-del"></i>Xóa
+                                                    </a>
+                                                </li>
+                                                <li class="dropdown-item">
+                                                    <a href="#0" class="text-gray"><i  class="lni lni-pencil trans"></i>Sửa</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <!-- End Table -->
+                    </div>
+                </div>
+            </div>
+            <!-- End Col -->
+        </div>
+        <!-- End Row -->
+    </div>
+    <!-- end container -->
+</section>
+
+
+<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div style="border-radius: 15px;" class="modal-content w-12">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addModalLabel">Thêm mới {{title}}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Đóng">
+                    <i class="lni lni-close close-btn close-btn-hover"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form (ngSubmit)="submitSanPham()" #sanphamForm="ngForm">
+                    <div class="input-style-3">
+                        <label for="nameProduct" class="icon"><i class="lni lni-dropbox" style="transform: translate(5px, 5px);"></i></label>
+                        <input type="text" id="TenSanPham" name="TenSanPham" [(ngModel)]="sanpham.TenSanPham" required placeholder="Tên Sản Phẩm" />
+                    </div>
+                    <div class="input-style-3">
+                        <label for="price" class="icon"><i class="lni lni-tag" style="transform: translate(5px, 5px);"></i></label>
+                        <input required [(ngModel)]="sanpham.Gia" type="number" id="price" name="Gia" placeholder="Giá sản phẩm" />
+                    </div>
+                    <div class="input-style-2">
+                        <label>Ngày Kết húc</label>
+                        <input type="date" required [(ngModel)]="sanpham.NgayKetThuc" name="NgayKetThuc" />
+                        <span class="icon">
+                            <i class="lni lni-calendar"></i>
+                        </span>
+                    </div>
+                    <div class="input-style-3">
+                        <textarea [(ngModel)]="sanpham.MoTaSanPham" id="description" name="MoTaSanPham" placeholder="Viết mô tả cho sản phẩm. . ." rows="5"></textarea>
+                        <span class="icon"><i class="lni lni-ticket-alt"></i></span>
+                    </div>
+                    <!-- <div class="select-style-1">
+                        <div class="select-position">
+                            <select>
+                                <option *ngFor="let item of loaiSanPhams" [value]="item.id" value="">Select category</option>
+                            </select>
+                        </div>
+                    </div> -->
+                    <div class="select-style-1">
+                        <label for="categoryID">Loại Sản Phẩm</label>
+                        <div class="select-position">
+                            <select id="categoryID" name="MaLoai" [(ngModel)]="sanpham.MaLoai">
+                                <option selected value="0">Loại Sản Phẩm</option>
+                                <option  *ngFor="let item of loaiSanPhams" [value]="item.id">{{item.TenLoai}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="select-style-1">
+                        <label for="unitID">Đơn vị</label>
+                        <div class="select-position">
+                            <select id="unitID" name="MaDonViTinh" [(ngModel)]="sanpham.MaDonViTinh">
+                                <option selected value="0">Đơn vị</option>
+                                <option *ngFor="let item of donViTinhs" [value]="item.id">{{item.TenDonViTinh}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="select-style-1">
+                        <label for="makerID">Nhà Sản xuất</label>
+                        <div class="select-position">
+                            <select id="makerID" name="MaNSX" [(ngModel)]="sanpham.MaNSX">
+                                <option value="0">Nhà Sản xuất</option>
+                                <option *ngFor="let item of nhaSanXuats" [value]="item.id">{{item.TenNSX}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="input-style-3">
+                        <label for="upload" class="icon"><i class="lni lni-upload" style="transform: translate(5px, 5px);"></i></label>
+                        <input type="file" size="100%" id="upload" (change)="onFileSelected($event)" name="anh" multiple/>
+                    </div>
+
+                    <!-- <img *ngIf="selectedFile" [src]="selectedFileUrl" alt="Ảnh xem trước" style="width: 100px; max-width: 100%; display: block;"> -->
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn-in-form main-btn danger-btn-outline rounded-md btn-hover" data-dismiss="modal">Đóng</button>
+                        <button type="submit" class="btn-in-form main-btn primary-btn-outline rounded-md btn-hover" [disabled]="!sanphamForm.form.valid" id="luuSanPham">OK</button>
+                    </div>
+                </form>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- 
+    <form (ngSubmit)="saveItem()">
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input required [(ngModel)]="editedItem.name" name="name" required type="text" class="form-control" id="name" aria-describedby="emailHelp" placeholder="Name...">
+        </div>
+        <div class="form-group">
+            <label for="description">Description</label>
+            <input t requiredype="text" [(ngModel)]="editedItem.description" name="description" class="form-control" id="description" placeholder="Description">
+        </div>
+
+        <button type="submit" class="btn btn-primary" *ngIf="!isEditing">Add Item</button>
+        <button type="submit" class="btn btn-primary" *ngIf="isEditing">Save</button>
+    </form> -->
