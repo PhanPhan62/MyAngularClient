@@ -6,7 +6,7 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './product.component.html',
   styleUrls: ['./product.component.css'],
 })
-export class ProductComponent {
+export class ProductComponent implements OnInit {
   title: any = 'Sản Phẩm';
   sanPhams: any[] = [];
   loaiSanPhams: any[] = [];
@@ -18,23 +18,22 @@ export class ProductComponent {
   public MaLoai: any;
   public TenSanPham: any;
   public MoTaSanPham: any;
-  public MaNSX: any ;
-  public MaDonViTinh: any ;
-  public Gia: any ;
-
+  public MaNSX: any;
+  public MaDonViTinh: any;
+  public Gia: any;
 
   constructor(private http: HttpClient) {}
 
   ngOnInit() {
-    this.sanpham.MaLoai = 0; 
+    this.sanpham.MaLoai = 0;
     this.sanpham.TenSanPham = '';
     this.sanpham.MoTaSanPham = '';
-    this.sanpham.MaNSX = 0; 
-    this.sanpham.MaDonViTinh = 0; 
-    this.sanpham.Gia = 0; 
+    this.sanpham.MaNSX = 0;
+    this.sanpham.MaDonViTinh = 0;
+    this.sanpham.Gia = 0;
     this.fetchSanPhams();
     this.fetchLoaiSanPhams();
-    this.fetchDonViTinhs(); 
+    this.fetchDonViTinhs();
     this.fetchNhaSanXuats();
   }
 
@@ -85,11 +84,11 @@ export class ProductComponent {
       .subscribe((response) => {
         console.log('Sản phẩm đã được thêm thành công.');
         this.successMessageVisible = true;
-        this.sanpham.MaLoai;
+        this.sanpham.MaLoai = 0;
         this.sanpham.TenSanPham = '';
         this.sanpham.MoTaSanPham = '';
-        this.sanpham.MaNSX;
-        this.sanpham.MaDonViTinh;
+        this.sanpham.MaNSX = 0;
+        this.sanpham.MaDonViTinh = 0;
         // this.sanpham.NgayBatDau='';
         this.sanpham.NgayKetThuc = '';
         this.sanpham.Gia = 0;
@@ -99,6 +98,7 @@ export class ProductComponent {
         // }, 0);
         setTimeout(() => {
           this.successMessageVisible = false;
+          this.fetchSanPhams();
         }, 4000);
       });
   }
@@ -106,4 +106,5 @@ export class ProductComponent {
   onFileSelected(event: any) {
     this.selectedFiles = event.target.files;
   }
+  p: number = 1;
 }

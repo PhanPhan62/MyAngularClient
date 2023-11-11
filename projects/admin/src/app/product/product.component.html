@@ -1,7 +1,4 @@
 <section class="section">
-
-
-
     <div class="container-fluid">
 
         <!-- ========== title-wrapper start ========== -->
@@ -61,7 +58,7 @@
                         </div>
                         <div class="right">
                             <div class="select-style-1" style="color: #fff;">
-                                <button type="button" class="btn-add main-btn success-btn-outline rounded-md btn-hover" data-toggle="modal" data-target="#addModal">
+                                <button type="button" class="btn-add main-btn light-btn-outline rounded-md btn-hover" data-toggle="modal" data-target="#addModal">
                                     <i  class="btn-add lni lni-circle-plus trans"></i>Thêm mới</button>
                             </div>
                             <!-- end select -->
@@ -72,6 +69,9 @@
                         <table class="table top-selling-table">
                             <thead>
                                 <tr>
+                                    <th>
+                                        <h6 class="text-sm text-medium">id</h6>
+                                    </th>
                                     <th>
                                         <h6 class="text-sm text-medium">Sản phẩm</h6>
                                     </th>
@@ -103,7 +103,10 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr *ngFor="let item of sanPhams">
+                                <tr *ngFor="let item of sanPhams ">
+                                    <td>
+                                        <p class="text-sm">{{ item.id }}</p>
+                                    </td>
                                     <td>
                                         <div class="product">
                                             <div class="image">
@@ -112,11 +115,13 @@
                                             <p class="text-sm">{{ item.TenSanPham }}</p>
                                         </div>
                                     </td>
+
                                     <td>
                                         <p class="text-sm">{{ item.MoTaSanPham }}</p>
                                     </td>
                                     <td>
-                                        <p class="text-sm">${{ item.Gia }}</p>
+                                        <p class="text-sm">{{ item.Gia | currency:'USD':'symbol':'1.0-2' }}</p>
+                                        <!-- <p class="text-sm">{{ item.Gia | currency:'VND':'symbol':'1.0-3' }}</p> -->
                                     </td>
                                     <td>
                                         <p class="text-sm">{{ item.TenNSX }}</p>
@@ -147,6 +152,7 @@
                                 </tr>
                             </tbody>
                         </table>
+                        <!-- <pagination-controls (pageChange)="p = $event"></pagination-controls> -->
                         <!-- End Table -->
                     </div>
                 </div>
@@ -179,7 +185,7 @@
                         <input required [(ngModel)]="sanpham.Gia" type="number" id="price" name="Gia" placeholder="Giá sản phẩm" />
                     </div>
                     <div class="input-style-2">
-                        <label>Ngày Kết húc</label>
+                        <label>Ngày Kết Thúc</label>
                         <input type="date" required [(ngModel)]="sanpham.NgayKetThuc" name="NgayKetThuc" />
                         <span class="icon">
                             <i class="lni lni-calendar"></i>
