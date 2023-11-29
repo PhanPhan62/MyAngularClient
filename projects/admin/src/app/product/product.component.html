@@ -1,20 +1,14 @@
 <section class="section">
+
     <div class="container-fluid">
 
         <!-- ========== title-wrapper start ========== -->
         <div class="title-wrapper pt-20">
+
             <div class="row align-items-center">
                 <div class="col-md-6">
-                    <!-- <div class="title mb-30">
-                        <h2>{{title}}</h2>
-                    </div> -->
-
                     <div *ngIf="successMessageVisible" class="alert-box success-alert  alert-custom">
-                        <!-- <div class="left">
-                <h5 class="text-bold">Success</h5>
-            </div> -->
                         <div class="alert">
-                            <!-- <h4 class="alert-heading">Success</h4> -->
                             <p class="text-medium">
                                 Sản phẩm đã được thêm thành công.
                             </p>
@@ -38,7 +32,6 @@
                 </div>
                 <!-- end col -->
             </div>
-            <!-- end row -->
         </div>
         <!-- ========== title-wrapper end ========== -->
 
@@ -46,6 +39,7 @@
             <!-- End Col -->
             <div class="col-lg-12">
                 <div class="card-style mb-30">
+
                     <div class="
                             title
                             d-flex
@@ -55,9 +49,11 @@
                         ">
                         <div class="left">
                             <h6 class="text-medium mb-30">Thông tin {{title}}</h6>
+
                         </div>
                         <div class="right">
                             <div class="select-style-1" style="color: #fff;">
+                                <!-- <button type="button" class="main-btn danger-btn-outline rounded-md btn-hover" (click)="xoaNhieuSanPham()">Xóa</button> -->
                                 <button type="button" class="btn-add main-btn light-btn-outline rounded-md btn-hover" data-toggle="modal" data-target="#addModal">
                                     <i  class="btn-add lni lni-circle-plus trans"></i>Thêm mới</button>
                             </div>
@@ -65,95 +61,92 @@
                         </div>
                     </div>
                     <!-- End Title -->
+
                     <div class="table-responsive">
-                        <table class="table top-selling-table">
-                            <thead>
+
+                        <p-table [value]="sanPhams" [paginator]="true" [rows]="10" [showCurrentPageReport]="true" [tableStyle]="{ 'min-width': '60rem' }" currentPageReportTemplate="Hiển thị {first} đến {last} của {totalRecords} sản phẩm">
+                            <ng-template pTemplate="header">
                                 <tr>
                                     <th>
-                                        <h6 class="text-sm text-medium">id</h6>
+                                        <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
                                     </th>
-                                    <th>
-                                        <h6 class="text-sm text-medium">Sản phẩm</h6>
+                                    <th pSortableColumn="id">
+                                        <div class="flex align-items-center">
+                                            ID
+                                            <p-sortIcon field="id"></p-sortIcon>
+                                        </div>
                                     </th>
-                                    <th class="min-width">
-                                        <h6 class="text-sm text-medium">
-                                            Loại Sản Phẩm <i class="lni lni-arrows-vertical"></i>
-                                        </h6>
+                                    <th pSortableColumn="TenSanPham">
+                                        <div class="flex align-items-center">
+                                            Sản phẩm
+                                            <p-sortIcon field="TenSanPham"></p-sortIcon>
+                                        </div>
                                     </th>
-                                    <th class="min-width">
-                                        <h6 class="text-sm text-medium">
-                                            Giá sản phẩm <i class="lni lni-arrows-vertical"></i>
-                                        </h6>
+                                    <th pSortableColumn="TenLoai">
+                                        <div class="flex align-items-center">
+                                            Tên Loại
+                                            <p-sortIcon field="TenLoai"></p-sortIcon>
+                                        </div>
                                     </th>
-                                    <th class="min-width">
-                                        <h6 class="text-sm text-medium">
-                                            Nhà cung cấp <i class="lni lni-arrows-vertical"></i>
-                                        </h6>
+                                    <th pSortableColumn="Gia">
+                                        <div class="flex align-items-center">
+                                            Giá
+                                            <p-sortIcon field="Gia"></p-sortIcon>
+                                        </div>
                                     </th>
-                                    <!-- <th class="min-width">
-                                        <h6 class="text-sm text-medium">
-                                            Status <i class="lni lni-arrows-vertical"></i>
-                                        </h6>
-                                    </th> -->
-                                    <th>
-                                        <h6 class="text-sm text-medium text-end">
-                                            Actions <i class="lni lni-arrows-vertical"></i>
-                                        </h6>
+                                    <th pSortableColumn="TenNSX">
+                                        <div class="flex align-items-center">
+                                            Nhà cung cấp
+                                            <p-sortIcon field="TenNSX"></p-sortIcon>
+                                        </div>
                                     </th>
                                 </tr>
-                            </thead>
-                            <tbody>
-                                <tr *ngFor="let item of sanPhams ">
+                            </ng-template>
+                            <ng-template pTemplate="body" let-item>
+                                <tr>
+                                    <td>
+                                        <p-tableCheckbox [value]="item"></p-tableCheckbox>
+                                    </td>
                                     <td>
                                         <p class="text-sm">{{ item.id }}</p>
                                     </td>
                                     <td>
                                         <div class="product">
                                             <div class="image">
-                                                <img src="http://localhost:3000/uploads/{{ item.Anh }}" alt="{{ item.TenSanPham }}" />
+                                                <img style="width: 100px; height: 100px; object-fit: cover; object-position: center;" src="http://localhost:3000/uploads/{{ item.Anh }}" alt="{{ item.TenSanPham }}" />
                                             </div>
                                             <p class="text-sm">{{ item.TenSanPham }}</p>
                                         </div>
                                     </td>
-
                                     <td>
-                                        <p class="text-sm">{{ item.MoTaSanPham }}</p>
+                                        <p class="text-sm">{{ item.TenLoai }}</p>
                                     </td>
                                     <td>
-                                        <p class="text-sm">{{ item.Gia | currency:'USD':'symbol':'1.0-2' }}</p>
-                                        <!-- <p class="text-sm">{{ item.Gia | currency:'VND':'symbol':'1.0-3' }}</p> -->
+                                        <p class="text-sm">{{ item.Gia | currency: 'USD':'symbol':'1.0-2' }}</p>
                                     </td>
                                     <td>
                                         <p class="text-sm">{{ item.TenNSX }}</p>
                                     </td>
-                                    <!-- <td>
-                                        <span class="status-btn close-btn">Pending</span>
-                                    </td> -->
                                     <td>
                                         <div class="action justify-content-end">
-                                            <button class="edit">
-                                                <i class="lni lni-eye"></i>
-                                            </button>
                                             <button class="more-btn ml-10 dropdown-toggle" id="moreAction1" data-bs-toggle="dropdown" aria-expanded="false">
-                                                <i class="lni lni-more-alt"></i>
-                                            </button>
+                        <i class="lni lni-more-alt"></i>
+                    </button>
                                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="moreAction1">
                                                 <li class="dropdown-item">
-                                                    <a href="#0" class="text-gray">
-                                                        <i class="lni lni-trash-can trans color-del"></i>Xóa
-                                                    </a>
+                                                    <a href="#0" class="text-gray"><i class="lni lni-pencil trans"></i>Sửa</a>
                                                 </li>
                                                 <li class="dropdown-item">
-                                                    <a href="#0" class="text-gray"><i  class="lni lni-pencil trans"></i>Sửa</a>
+                                                    <a href="admin/product" class="text-gray" (click)="deleteProduct(item.id, item.TenSanPham)">
+                                                        <i class="lni lni-trash-can trans color-del"></i>Xóa
+                                                    </a>
                                                 </li>
                                             </ul>
                                         </div>
                                     </td>
                                 </tr>
-                            </tbody>
-                        </table>
-                        <!-- <pagination-controls (pageChange)="p = $event"></pagination-controls> -->
-                        <!-- End Table -->
+                            </ng-template>
+                        </p-table>
                     </div>
                 </div>
             </div>
@@ -164,10 +157,9 @@
     <!-- end container -->
 </section>
 
-
 <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
-        <div style="border-radius: 15px;" class="modal-content w-12">
+        <div style="border-radius: 15px; width: 200%; border-radius: 15px; margin: auto; transform: translateX(-200px);" class="modal-content w-12">
             <div class="modal-header">
                 <h5 class="modal-title" id="addModalLabel">Thêm mới {{title}}</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Đóng">
@@ -182,15 +174,15 @@
                     </div>
                     <div class="input-style-3">
                         <label for="price" class="icon"><i class="lni lni-tag" style="transform: translate(5px, 5px);"></i></label>
-                        <input required [(ngModel)]="sanpham.Gia" type="number" id="price" name="Gia" placeholder="Giá sản phẩm" />
+                        <input requiredư [(ngModel)]="sanpham.Gia" type="number" id="price" name="Gia" placeholder="Giá sản phẩm" />
                     </div>
-                    <div class="input-style-2">
+                    <!-- <div class="input-style-2">
                         <label>Ngày Kết Thúc</label>
                         <input type="date" required [(ngModel)]="sanpham.NgayKetThuc" name="NgayKetThuc" />
                         <span class="icon">
                             <i class="lni lni-calendar"></i>
                         </span>
-                    </div>
+                    </div> -->
                     <div class="input-style-3">
                         <textarea [(ngModel)]="sanpham.MoTaSanPham" id="description" name="MoTaSanPham" placeholder="Viết mô tả cho sản phẩm. . ." rows="5"></textarea>
                         <span class="icon"><i class="lni lni-ticket-alt"></i></span>
@@ -234,8 +226,6 @@
                         <input type="file" size="100%" id="upload" (change)="onFileSelected($event)" name="anh" multiple/>
                     </div>
 
-                    <!-- <img *ngIf="selectedFile" [src]="selectedFileUrl" alt="Ảnh xem trước" style="width: 100px; max-width: 100%; display: block;"> -->
-
                     <div class="modal-footer">
                         <button type="button" class="btn-in-form main-btn danger-btn-outline rounded-md btn-hover" data-dismiss="modal">Đóng</button>
                         <button type="submit" class="btn-in-form main-btn primary-btn-outline rounded-md btn-hover" [disabled]="!sanphamForm.form.valid" id="luuSanPham">OK</button>
@@ -247,19 +237,3 @@
         </div>
     </div>
 </div>
-
-
-<!-- 
-    <form (ngSubmit)="saveItem()">
-        <div class="form-group">
-            <label for="name">Name</label>
-            <input required [(ngModel)]="editedItem.name" name="name" required type="text" class="form-control" id="name" aria-describedby="emailHelp" placeholder="Name...">
-        </div>
-        <div class="form-group">
-            <label for="description">Description</label>
-            <input t requiredype="text" [(ngModel)]="editedItem.description" name="description" class="form-control" id="description" placeholder="Description">
-        </div>
-
-        <button type="submit" class="btn btn-primary" *ngIf="!isEditing">Add Item</button>
-        <button type="submit" class="btn btn-primary" *ngIf="isEditing">Save</button>
-    </form> -->

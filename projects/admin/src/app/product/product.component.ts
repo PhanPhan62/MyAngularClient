@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
+
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
@@ -12,7 +13,7 @@ export class ProductComponent implements OnInit {
   loaiSanPhams: any[] = [];
   donViTinhs: any[] = [];
   nhaSanXuats: any[] = [];
-
+  public selectedProducts: any[] = [];
   public url = 'http://localhost:3000';
 
   public MaLoai: any;
@@ -36,11 +37,17 @@ export class ProductComponent implements OnInit {
     this.fetchDonViTinhs();
     this.fetchNhaSanXuats();
   }
+  p: number = 1;
 
   fetchSanPhams() {
-    this.http.get(this.url + '/admin/product').subscribe((data: any) => {
-      this.sanPhams = data;
-    });
+    const pageIndex = this.p;
+    const pageSize = 1;
+
+    this.http
+      .get(`${this.url}/admin/product?page=${pageIndex}&pageSize=${pageSize}`)
+      .subscribe((data: any) => {
+        this.sanPhams = data;
+      });
   }
 
   fetchLoaiSanPhams() {
@@ -71,8 +78,6 @@ export class ProductComponent implements OnInit {
     formData.append('MoTaSanPham', this.sanpham.MoTaSanPham);
     formData.append('MaNSX', this.sanpham.MaNSX);
     formData.append('MaDonViTinh', this.sanpham.MaDonViTinh);
-    // formData.append('NgayBatDau', this.sanpham.NgayBatDau);
-    formData.append('NgayKetThuc', this.sanpham.NgayKetThuc);
     formData.append('Gia', this.sanpham.Gia);
 
     for (const file of this.selectedFiles) {
@@ -80,7 +85,7 @@ export class ProductComponent implements OnInit {
     }
 
     this.http
-      .post('http://localhost:3000/admin/sanpham', formData)
+      .post(this.url + '/admin/sanpham', formData)
       .subscribe((response) => {
         console.log('Sản phẩm đã được thêm thành công.');
         this.successMessageVisible = true;
@@ -89,13 +94,8 @@ export class ProductComponent implements OnInit {
         this.sanpham.MoTaSanPham = '';
         this.sanpham.MaNSX = 0;
         this.sanpham.MaDonViTinh = 0;
-        // this.sanpham.NgayBatDau='';
-        this.sanpham.NgayKetThuc = '';
         this.sanpham.Gia = 0;
         this.selectedFiles = [];
-        // setTimeout(() => {
-        //   window.location.reload();
-        // }, 0);
         setTimeout(() => {
           this.successMessageVisible = false;
           this.fetchSanPhams();
@@ -106,5 +106,22 @@ export class ProductComponent implements OnInit {
   onFileSelected(event: any) {
     this.selectedFiles = event.target.files;
   }
-  p: number = 1;
+  deleteProduct(productId: number, productName: string): void {
+    const isConfirmed = confirm(
+      `Bạn có chắc chắn muốn xóa sản phẩm ${productName} không?`
+    );
+
+    if (isConfirmed) {
+      this.http
+        .delete<any>(`${this.url}/admin/product/delete/${productId}`, {})
+        .subscribe(
+          (response) => {
+            console.log('Xóa thành công', response.message);
+          },
+          (error) => {
+            console.error('Lỗi xóa sản phẩm', error);
+          }
+        );
+    }
+  }
 }
