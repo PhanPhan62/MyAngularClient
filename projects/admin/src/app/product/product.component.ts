@@ -70,37 +70,58 @@ export class ProductComponent implements OnInit {
   sanpham: any = {};
   selectedFiles: File[] = [];
   successMessageVisible = false;
+  isEditing: boolean = false;
+  editItemId: number | null = null;
 
   submitSanPham() {
-    const formData = new FormData();
-    formData.append('MaLoai', this.sanpham.MaLoai);
-    formData.append('TenSanPham', this.sanpham.TenSanPham);
-    formData.append('MoTaSanPham', this.sanpham.MoTaSanPham);
-    formData.append('MaNSX', this.sanpham.MaNSX);
-    formData.append('MaDonViTinh', this.sanpham.MaDonViTinh);
-    formData.append('Gia', this.sanpham.Gia);
+    if (!this.isEditing) {
+      const formData = new FormData();
+      formData.append('MaLoai', this.sanpham.MaLoai);
+      formData.append('TenSanPham', this.sanpham.TenSanPham);
+      formData.append('MoTaSanPham', this.sanpham.MoTaSanPham);
+      formData.append('MaNSX', this.sanpham.MaNSX);
+      formData.append('MaDonViTinh', this.sanpham.MaDonViTinh);
+      formData.append('Gia', this.sanpham.Gia);
 
-    for (const file of this.selectedFiles) {
-      formData.append('Anh', file);
-    }
+      for (const file of this.selectedFiles) {
+        formData.append('Anh', file);
+      }
 
-    this.http
-      .post(this.url + '/admin/sanpham', formData)
-      .subscribe((response) => {
-        console.log('Sản phẩm đã được thêm thành công.');
-        this.successMessageVisible = true;
-        this.sanpham.MaLoai = 0;
-        this.sanpham.TenSanPham = '';
-        this.sanpham.MoTaSanPham = '';
-        this.sanpham.MaNSX = 0;
-        this.sanpham.MaDonViTinh = 0;
-        this.sanpham.Gia = 0;
-        this.selectedFiles = [];
-        setTimeout(() => {
-          this.successMessageVisible = false;
+      this.http
+        .post(this.url + '/admin/sanpham', formData)
+        .subscribe((response) => {
+          console.log('Sản phẩm đã được thêm thành công.');
+          this.successMessageVisible = true;
+          this.sanpham.MaLoai = 0;
+          this.sanpham.TenSanPham = '';
+          this.sanpham.MoTaSanPham = '';
+          this.sanpham.MaNSX = 0;
+          this.sanpham.MaDonViTinh = 0;
+          this.sanpham.Gia = 0;
+          this.selectedFiles = [];
+          setTimeout(() => {
+            this.successMessageVisible = false;
+            this.fetchSanPhams();
+          }, 4000);
+        });
+    } else {
+      this.http
+        .patch(this.url + '/product/update/'+ this.sanpham.id, this.sanpham)
+        .subscribe(() => {
+          this.isEditing = false;
+          this.editItemId = null;
           this.fetchSanPhams();
-        }, 4000);
-      });
+          this.sanpham = {};
+        });
+    }
+  }
+  edit(item:any){
+    this.sanpham = { ...item };
+    this.isEditing = true;
+    this.editItemId = item.id;
+    console.log(this.sanpham, this.editItemId);
+    
+    // alert(item.id)
   }
 
   onFileSelected(event: any) {
@@ -117,9 +138,11 @@ export class ProductComponent implements OnInit {
         .subscribe(
           (response) => {
             console.log('Xóa thành công', response.message);
+            alert(`Xóa sản Phẩm ${productName} thành công`);
+            this.fetchSanPhams();
           },
           (error) => {
-            console.error('Lỗi xóa sản phẩm', error);
+            alert(`Lỗi ${error}`);
           }
         );
     }

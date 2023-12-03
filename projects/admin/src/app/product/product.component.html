@@ -1,7 +1,5 @@
 <section class="section">
-
     <div class="container-fluid">
-
         <!-- ========== title-wrapper start ========== -->
         <div class="title-wrapper pt-20">
 
@@ -30,16 +28,11 @@
                         </nav>
                     </div>
                 </div>
-                <!-- end col -->
             </div>
         </div>
-        <!-- ========== title-wrapper end ========== -->
-
         <div class="row">
-            <!-- End Col -->
             <div class="col-lg-12">
                 <div class="card-style mb-30">
-
                     <div class="
                             title
                             d-flex
@@ -49,22 +42,16 @@
                         ">
                         <div class="left">
                             <h6 class="text-medium mb-30">Thông tin {{title}}</h6>
-
                         </div>
                         <div class="right">
                             <div class="select-style-1" style="color: #fff;">
-                                <!-- <button type="button" class="main-btn danger-btn-outline rounded-md btn-hover" (click)="xoaNhieuSanPham()">Xóa</button> -->
                                 <button type="button" class="btn-add main-btn light-btn-outline rounded-md btn-hover" data-toggle="modal" data-target="#addModal">
                                     <i  class="btn-add lni lni-circle-plus trans"></i>Thêm mới</button>
                             </div>
-                            <!-- end select -->
                         </div>
                     </div>
-                    <!-- End Title -->
-
                     <div class="table-responsive">
-
-                        <p-table [value]="sanPhams" [paginator]="true" [rows]="10" [showCurrentPageReport]="true" [tableStyle]="{ 'min-width': '60rem' }" currentPageReportTemplate="Hiển thị {first} đến {last} của {totalRecords} sản phẩm">
+                        <p-table [value]="sanPhams" [paginator]="true" [rows]="10" [showCurrentPageReport]="true" [tableStyle]="{ 'min-width': '60rem','max-width': '65rem' }" currentPageReportTemplate="Hiển thị {first} đến {last} của {totalRecords} sản phẩm">
                             <ng-template pTemplate="header">
                                 <tr>
                                     <th>
@@ -122,7 +109,7 @@
                                         <p class="text-sm">{{ item.TenLoai }}</p>
                                     </td>
                                     <td>
-                                        <p class="text-sm">{{ item.Gia | currency: 'USD':'symbol':'1.0-2' }}</p>
+                                        <p class="text-sm">{{ item.Gia | currency: 'VND':'symbol':'1.0-2' }}</p>
                                     </td>
                                     <td>
                                         <p class="text-sm">{{ item.TenNSX }}</p>
@@ -130,16 +117,16 @@
                                     <td>
                                         <div class="action justify-content-end">
                                             <button class="more-btn ml-10 dropdown-toggle" id="moreAction1" data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="lni lni-more-alt"></i>
-                    </button>
+                                                <i class="lni lni-more-alt"></i>
+                                            </button>
                                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="moreAction1">
                                                 <li class="dropdown-item">
-                                                    <a href="#0" class="text-gray"><i class="lni lni-pencil trans"></i>Sửa</a>
+                                                    <div data-toggle="modal" data-target="#addModal" (click)="edit(item)" class="text-gray cssDelete"><i class="lni lni-pencil trans"></i>Sửa</div>
                                                 </li>
                                                 <li class="dropdown-item">
-                                                    <a href="admin/product" class="text-gray" (click)="deleteProduct(item.id, item.TenSanPham)">
+                                                    <div class="text-gray cssDelete" (click)="deleteProduct(item.id, item.TenSanPham)">
                                                         <i class="lni lni-trash-can trans color-del"></i>Xóa
-                                                    </a>
+                                                    </div>
                                                 </li>
                                             </ul>
                                         </div>
@@ -150,13 +137,9 @@
                     </div>
                 </div>
             </div>
-            <!-- End Col -->
         </div>
-        <!-- End Row -->
     </div>
-    <!-- end container -->
 </section>
-
 <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div style="border-radius: 15px; width: 200%; border-radius: 15px; margin: auto; transform: translateX(-200px);" class="modal-content w-12">
@@ -176,24 +159,10 @@
                         <label for="price" class="icon"><i class="lni lni-tag" style="transform: translate(5px, 5px);"></i></label>
                         <input requiredư [(ngModel)]="sanpham.Gia" type="number" id="price" name="Gia" placeholder="Giá sản phẩm" />
                     </div>
-                    <!-- <div class="input-style-2">
-                        <label>Ngày Kết Thúc</label>
-                        <input type="date" required [(ngModel)]="sanpham.NgayKetThuc" name="NgayKetThuc" />
-                        <span class="icon">
-                            <i class="lni lni-calendar"></i>
-                        </span>
-                    </div> -->
                     <div class="input-style-3">
                         <textarea [(ngModel)]="sanpham.MoTaSanPham" id="description" name="MoTaSanPham" placeholder="Viết mô tả cho sản phẩm. . ." rows="5"></textarea>
                         <span class="icon"><i class="lni lni-ticket-alt"></i></span>
                     </div>
-                    <!-- <div class="select-style-1">
-                        <div class="select-position">
-                            <select>
-                                <option *ngFor="let item of loaiSanPhams" [value]="item.id" value="">Select category</option>
-                            </select>
-                        </div>
-                    </div> -->
                     <div class="select-style-1">
                         <label for="categoryID">Loại Sản Phẩm</label>
                         <div class="select-position">
@@ -208,7 +177,7 @@
                         <div class="select-position">
                             <select id="unitID" name="MaDonViTinh" [(ngModel)]="sanpham.MaDonViTinh">
                                 <option selected value="0">Đơn vị</option>
-                                <option *ngFor="let item of donViTinhs" [value]="item.id">{{item.TenDonViTinh}}</option>
+                                <option *ngFor="let sanpham of donViTinhs" [value]="sanpham.id">{{sanpham.TenDonViTinh}}</option>
                             </select>
                         </div>
                     </div>
@@ -225,14 +194,12 @@
                         <label for="upload" class="icon"><i class="lni lni-upload" style="transform: translate(5px, 5px);"></i></label>
                         <input type="file" size="100%" id="upload" (change)="onFileSelected($event)" name="anh" multiple/>
                     </div>
-
                     <div class="modal-footer">
                         <button type="button" class="btn-in-form main-btn danger-btn-outline rounded-md btn-hover" data-dismiss="modal">Đóng</button>
-                        <button type="submit" class="btn-in-form main-btn primary-btn-outline rounded-md btn-hover" [disabled]="!sanphamForm.form.valid" id="luuSanPham">OK</button>
+                        <button type="submit" class="btn-in-form main-btn primary-btn-outline rounded-md btn-hover" *ngIf="!isEditing" [disabled]="!sanphamForm.form.valid" id="luuSanPham">Xác nhận</button>
+                        <button type="submit" class="btn-in-form main-btn primary-btn-outline rounded-md btn-hover" *ngIf="isEditing" [disabled]="!sanphamForm.form.valid" id="suaSanPham">Sửa</button>
                     </div>
                 </form>
-
-
             </div>
         </div>
     </div>
