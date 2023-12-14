@@ -72,9 +72,11 @@ export class ProductComponent implements OnInit {
   successMessageVisible = false;
   isEditing: boolean = false;
   editItemId: number | null = null;
-
+  info:any;
   submitSanPham() {
     if (!this.isEditing) {
+      const info="Thêm thông tin";
+      this.info = info;
       const formData = new FormData();
       formData.append('MaLoai', this.sanpham.MaLoai);
       formData.append('TenSanPham', this.sanpham.TenSanPham);
@@ -105,8 +107,23 @@ export class ProductComponent implements OnInit {
           }, 4000);
         });
     } else {
+      const info = 'Sửa thông tin';
+      this.info = info;
+      const formData = new FormData();
+      formData.append('MaLoai', this.sanpham.MaLoai);
+      formData.append('TenSanPham', this.sanpham.TenSanPham);
+      formData.append('MoTaSanPham', this.sanpham.MoTaSanPham);
+      formData.append('MaNSX', this.sanpham.MaNSX);
+      formData.append('MaDonViTinh', this.sanpham.MaDonViTinh);
+      formData.append('Gia', this.sanpham.Gia);
+      this.selectedFiles = [];
+      setTimeout(() => {
+        this.successMessageVisible = false;
+        this.fetchSanPhams();
+      }, 4000);
+
       this.http
-        .patch(this.url + '/product/update/'+ this.sanpham.id, this.sanpham)
+        .post(this.url + '/product/update/' + this.sanpham.id, this.sanPhams)
         .subscribe(() => {
           this.isEditing = false;
           this.editItemId = null;
@@ -114,14 +131,17 @@ export class ProductComponent implements OnInit {
           this.sanpham = {};
         });
     }
+  } 
+
+  Create(){
+    this.info = 'Thêm';
   }
-  edit(item:any){
+  Edit(item:any){
+    this.info = 'Sửa';
     this.sanpham = { ...item };
     this.isEditing = true;
     this.editItemId = item.id;
-    console.log(this.sanpham, this.editItemId);
-    
-    // alert(item.id)
+    console.log(this.sanpham, this.editItemId, this.sanpham);
   }
 
   onFileSelected(event: any) {

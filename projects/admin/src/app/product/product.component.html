@@ -45,7 +45,7 @@
                         </div>
                         <div class="right">
                             <div class="select-style-1" style="color: #fff;">
-                                <button type="button" class="btn-add main-btn light-btn-outline rounded-md btn-hover" data-toggle="modal" data-target="#addModal">
+                                <button (click)="Create()" type="button" class="btn-add main-btn light-btn-outline rounded-md btn-hover" data-toggle="modal" data-target="#addModal">
                                     <i  class="btn-add lni lni-circle-plus trans"></i>Thêm mới</button>
                             </div>
                         </div>
@@ -121,7 +121,7 @@
                                             </button>
                                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="moreAction1">
                                                 <li class="dropdown-item">
-                                                    <div data-toggle="modal" data-target="#addModal" (click)="edit(item)" class="text-gray cssDelete"><i class="lni lni-pencil trans"></i>Sửa</div>
+                                                    <div data-toggle="modal" data-target="#addModal" (click)="Edit(item)" class="text-gray cssDelete"><i class="lni lni-pencil trans"></i>Sửa</div>
                                                 </li>
                                                 <li class="dropdown-item">
                                                     <div class="text-gray cssDelete" (click)="deleteProduct(item.id, item.TenSanPham)">
@@ -140,11 +140,40 @@
         </div>
     </div>
 </section>
+<footer class="footer">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6 order-last order-md-first">
+                <div class="copyright text-center text-md-start">
+                    <p class="text-sm">
+                        Xây dựng website bán hàng thời trang nữ by
+                        <a href="https://plainadmin.com" rel="nofollow" target="_blank">
+                            Phan Thành Công - 12520092
+                        </a>
+                    </p>
+                </div>
+            </div>
+            <!-- end col-->
+            <div class="col-md-6">
+                <div class="
+                  terms
+                  d-flex
+                  justify-content-center justify-content-md-end
+                ">
+                    <!-- <a href="#0" class="text-sm">Term & Conditions</a>
+                    <a href="#0" class="text-sm ml-15">Privacy & Policy</a> -->
+                </div>
+            </div>
+        </div>
+        <!-- end row -->
+    </div>
+    <!-- end container -->
+</footer>
 <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div style="border-radius: 15px; width: 200%; border-radius: 15px; margin: auto; transform: translateX(-200px);" class="modal-content w-12">
             <div class="modal-header">
-                <h5 class="modal-title" id="addModalLabel">Thêm mới {{title}}</h5>
+                <h5 class="modal-title" id="addModalLabel">{{info+' thông tin '+ title}}</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Đóng">
                     <i class="lni lni-close close-btn close-btn-hover"></i>
                 </button>
@@ -167,7 +196,7 @@
                         <label for="categoryID">Loại Sản Phẩm</label>
                         <div class="select-position">
                             <select id="categoryID" name="MaLoai" [(ngModel)]="sanpham.MaLoai">
-                                <option selected value="0">Loại Sản Phẩm</option>
+                                <option value="0">Loại Sản Phẩm</option>
                                 <option  *ngFor="let item of loaiSanPhams" [value]="item.id">{{item.TenLoai}}</option>
                             </select>
                         </div>
