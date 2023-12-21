@@ -3,6 +3,10 @@ import { RouterModule, Routes } from '@angular/router';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { HomeComponent } from './home/home.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
+import { LoginComponent } from './login/login.component';
+import { ProductComponent } from './product/product.component';
+
+
 const routes: Routes = [
   {
     path: '',
@@ -12,6 +16,15 @@ const routes: Routes = [
     path: 'productDetail/:id',
     component: ProductDetailComponent,
   },
+  {
+    path: 'product',
+    component: ProductComponent,
+  },
+  {
+    path: 'login',
+    component: LoginComponent,
+  },
+  { path: '', redirectTo: '', pathMatch: 'full' },
 ];
 
 @NgModule({

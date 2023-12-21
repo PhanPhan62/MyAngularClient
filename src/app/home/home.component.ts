@@ -22,16 +22,8 @@ export class HomeComponent implements OnInit {
   getAllBestSeller3: any[] = [];
   getAllSell: any[] = [];
   getAllSell3: any[] = [];
-  // getByIdProduct: any[] = [];
-  public getByIdProduct: any = {
-    id: 0,
-    TenLoai: '',
-    TenSanPham: '',
-    MoTaSanPham: '',
-    Gia: 0,
-    Anh: [{ Anh1: 'hihi' }],
-    TenNSX: '',
-  };
+  getByIdProduct: any[] = []; 
+  listImg: any[] = [];
   public url = 'http://localhost:3000';
   constructor(private http: HttpClient) {}
   ngOnInit() {
@@ -41,8 +33,9 @@ export class HomeComponent implements OnInit {
     this.fetchgetAllBestSeller3();
     this.fetchgetAllSell();
     this.fetchgetAllSell3();
+    this.fetchMenu();
+    this.fetchLoaiSanPhams();
   }
-
   fetchNewProducts3() {
     this.http.get(this.url + '/newProducts3').subscribe((data: any) => {
       this.newProduct3 = data;
@@ -74,45 +67,25 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  // detailProduct(id: number) {
-  //   this.http.get(this.url + '/getByIdProduct/' + id).subscribe(
-  //     (data: any) => {
-  //       this.getByIdProduct = {
-  //         id: data[0].id,
-  //         TenLoai: data[0].TenLoai,
-  //         TenSanPham: data[0].TenSanPham,
-  //         MoTaSanPham: data[0].MoTaSanPham,
-  //         Gia: data[0].Gia,
-  //         Anh: JSON.parse(data[0].Anh).map((anh: string, index: number) => ({
-  //           [`Anh${index + 1}`]: anh,
-  //         })),
-  //         TenNSX: data[0].TenNSX,
-  //       };
-  //       console.log(this.getByIdProduct);
-
-  //       // Transform the Anh array to an array of objects
-  //       this.getByIdProduct.Anh = this.getByIdProduct.Anh.map(
-  //         (anh: string, index: number) => {
-  //           return { [`Anh${index + 1}`]: anh };
-  //         }
-  //       );
-  //     },
-  //     (error) => {
-  //       console.error('Lỗi khi lấy dữ liệu sản phẩm:', error);
-  //     }
-  //   );
-  // }
-  listImg:any[]=[];
   detailProduct(id: number) {
     this.http.get(this.url + '/getByIdProduct/' + id).subscribe((data: any) => {
       this.getByIdProduct = data;
-      // console.log(this.getByIdProduct);
-      
     });
     this.http.get(this.url + '/listImg/' + id).subscribe((data: any) => {
       this.listImg = data;
-      // console.log(this.listImg);
-      
+    });
+  }
+  menu: any[] = [];
+  loaiSanPhams: any[] = [];
+
+  fetchMenu() {
+    this.http.get(this.url + '/menu').subscribe((data: any) => {
+      this.menu = data;
+    });
+  }
+  fetchLoaiSanPhams() {
+    this.http.get(this.url + '/admin/category').subscribe((data: any) => {
+      this.loaiSanPhams = data;
     });
   }
 }

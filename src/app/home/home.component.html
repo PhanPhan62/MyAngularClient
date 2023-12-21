@@ -1,4 +1,7 @@
 <!-- Slider Area -->
+<!-- Header -->
+<app-header></app-header>
+<!--/ End Header -->
 <section class="hero-slider">
     <!-- Single Slider -->
     <div class="single-slider">
@@ -1021,7 +1024,7 @@
                             <p class="text">Suspendisse massa leo, vestibulum cursus nulla sit amet, frungilla placerat lorem. Cars fermentum, sapien. </p>
                             <h1 class="price">$1200 <s>$1890</s></h1>
                             <div class="coming-time">
-                                <div class="clearfix" data-countdown="2024/02/30"></div>
+                                <div class="clearfix" data-countdown="2024/02/10"></div>
                             </div>
                         </div>
                     </div>
@@ -1129,28 +1132,7 @@
 </section>
 <!-- End Shop Services Area -->
 
-<!-- Start Shop Newsletter  -->
-<section class="shop-newsletter section">
-    <div class="container">
-        <div class="inner-top">
-            <div class="row">
-                <div class="col-lg-8 offset-lg-2 col-12">
-                    <!-- Start Newsletter Inner -->
-                    <div class="inner">
-                        <h4>Ưu đãi</h4>
-                        <p> Đăng ký nhận <span>Ưu đãi</span> của chúng tôi và nhận ưu đãi <span>10%</span> cho đơn hàng đầu tiên của bạn.</p>
-                        <form action="" method="get" target="_blank" class="newsletter-inner">
-                            <input name="email" placeholder="Nhập email của bạn" required="" type="email">
-                            <button class="btn">Đăng ký</button>
-                        </form>
-                    </div>
-                    <!-- End Newsletter Inner -->
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- End Shop Newsletter -->
+<app-newsletter></app-newsletter>
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog">
@@ -1160,6 +1142,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span class="ti-close" aria-hidden="true"></span></button>
             </div>
             <div class="modal-body" *ngIf="this.getByIdProduct[0]">
+                <!-- <div class="modal-body"> -->
                 <div class="row no-gutters">
                     <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
                         <!-- Product Slider -->
@@ -1168,17 +1151,22 @@
                                 <div class="single-slider" *ngFor="let item of listImg">
                                     <img src="http://localhost:3000/uploads/{{item.Anh}}" alt="{{this.getByIdProduct[0].TenSanPham}}">
                                 </div>
-
-                                <!-- <div class="single-slider">
-                                    <img src="https://via.placeholder.com/569x528" alt="#">
-                                </div>
-                                <div class="single-slider">
-                                    <img src="https://via.placeholder.com/569x528" alt="#">
-                                </div>
-                                <div class="single-slider">
-                                    <img src="https://via.placeholder.com/569x528" alt="#">
-                                </div> -->
                             </div>
+                            <!-- <div class="quickview-slider-active">
+
+                                <div class="single-slider">
+                                    <img src="https://via.placeholder.com/569x528" alt="#">
+                                </div>
+                                <div class="single-slider">
+                                    <img src="https://via.placeholder.com/569x528" alt="#">
+                                </div>
+                                <div class="single-slider">
+                                    <img src="https://via.placeholder.com/569x528" alt="#">
+                                </div>
+                                <div class="single-slider">
+                                    <img src="https://via.placeholder.com/569x528" alt="#">
+                                </div>
+                            </div> -->
                         </div>
                         <!-- End Product slider -->
                     </div>
@@ -1265,3 +1253,4 @@
     </div>
 </div>
 <!-- Modal end -->
+<app-footer></app-footer>

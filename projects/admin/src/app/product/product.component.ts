@@ -86,7 +86,7 @@ export class ProductComponent implements OnInit {
       formData.append('Gia', this.sanpham.Gia);
 
       for (const file of this.selectedFiles) {
-        formData.append('Anh', file);
+        formData.append('Anh', file); 
       }
 
       this.http
@@ -123,7 +123,7 @@ export class ProductComponent implements OnInit {
       }, 4000);
 
       this.http
-        .post(this.url + '/product/update/' + this.sanpham.id, this.sanPhams)
+        .post(this.url + '/product/update/' + this.sanpham.id, formData)
         .subscribe(() => {
           this.isEditing = false;
           this.editItemId = null;

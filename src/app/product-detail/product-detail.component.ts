@@ -20,24 +20,31 @@ export class ProductDetailComponent {
     TenNSX: '',
   };
   listImg: any[] = [];
-  ngOnInit() {
-    this.route.params.subscribe((params) => {
-      const id = params['id'];
-      console.log('Product ID:', id);
-      this.getByIdProductFunction(id);
+  // ngOnInit() {
+  //   this.route.params.subscribe((params) => {
+  //     const id = params['id'];
+  //     console.log('Product ID:', id);
+  //     this.getByIdProductFunction(id);
+  //   });
+  // }
+  // getByIdProductFunction(id: any) {
+  //   this.http.get(this.url + '/getByIdProduct/' + id).subscribe((data: any) => {
+  //     this.getByIdProduct = data;
+  //   });
+  //   this.http.get(this.url + '/listImg/' + id).subscribe((data: any) => {
+  //     this.listImg = data;
+  //     console.log(this.listImg);
+  //   });
+  // }
+
+  // listImgFunction(id: any) {}
+
+  detailProduct(id: number) {
+    this.http.get(this.url + '/getByIdProduct/' + id).subscribe((data: any) => {
+      this.getByIdProduct = data;
     });
-  }
-    getByIdProductFunction(id:any) {
-      this.http.get(this.url + '/getByIdProduct/' + id).subscribe((data: any) => {
-        this.getByIdProduct = data;
-      });
-      this.http.get(this.url + '/listImg/' + id).subscribe((data: any) => {
-        this.listImg = data;
-        console.log(this.listImg);
-      });
-    }
-  
-  listImgFunction(id: any) {
-    
+    this.http.get(this.url + '/listImg/' + id).subscribe((data: any) => {
+      this.listImg = data;
+    });
   }
 }
