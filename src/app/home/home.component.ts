@@ -1,15 +1,8 @@
-import { Component, OnInit  } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { data } from 'jquery';
-interface Product {
-  id: number;
-  TenLoai: string;
-  TenSanPham: string;
-  MoTaSanPham: string;
-  Gia: number;
-  Anh: string[];
-  TenNSX: string;
-}
+import { HeaderComponent } from '../layouts/header/header.component';
+import { CartService } from '../cart.service';
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -22,10 +15,21 @@ export class HomeComponent implements OnInit {
   getAllBestSeller3: any[] = [];
   getAllSell: any[] = [];
   getAllSell3: any[] = [];
-  getByIdProduct: any[] = []; 
+  getByIdProduct: any[] = [];
   listImg: any[] = [];
+  cart: any[] = [];
+  public sharedValue: any = ''; // Modify the type if needed
+  public cartItems: any[] = [];
+  public arrayCart: any[] = [];
+  menu: any[] = [];
+  loaiSanPhams: any[] = [];
+  // public sharedValue: any[] = [];
   public url = 'http://localhost:3000';
-  constructor(private http: HttpClient) {}
+
+  @ViewChild(HeaderComponent) headerComponent!: HeaderComponent;
+
+  constructor(private http: HttpClient, private cartService: CartService) {}
+
   ngOnInit() {
     this.fetchNewProducts();
     this.fetchNewProducts3();
@@ -35,6 +39,9 @@ export class HomeComponent implements OnInit {
     this.fetchgetAllSell3();
     this.fetchMenu();
     this.fetchLoaiSanPhams();
+    this.cartService.cart$.subscribe((cartItems) => {
+      this.cartItems = cartItems;
+    });
   }
   fetchNewProducts3() {
     this.http.get(this.url + '/newProducts3').subscribe((data: any) => {
@@ -75,8 +82,6 @@ export class HomeComponent implements OnInit {
       this.listImg = data;
     });
   }
-  menu: any[] = [];
-  loaiSanPhams: any[] = [];
 
   fetchMenu() {
     this.http.get(this.url + '/menu').subscribe((data: any) => {
@@ -87,5 +92,35 @@ export class HomeComponent implements OnInit {
     this.http.get(this.url + '/admin/category').subscribe((data: any) => {
       this.loaiSanPhams = data;
     });
+  }
+  addToCart(
+    productId: number,
+    TenSanPham: any,
+    Anh: any,
+    Gia: any,
+    quantity: number
+  ) {
+    const existingItem = this.cart.find(
+      (cartItem) =>
+        cartItem.productId === productId &&
+        cartItem.TenSanPham === TenSanPham &&
+        cartItem.Anh === Anh &&
+        cartItem.Gia === Gia
+    );
+
+    if (existingItem) {
+      // Nếu sản phẩm đã tồn tại, tăng số lượng
+      existingItem.quantity += quantity;
+    } else {
+      // Nếu sản phẩm chưa tồn tại, thêm mới vào giỏ hàng
+      this.cart.push({ productId, TenSanPham, Anh, Gia, quantity });
+    }
+
+    this.cartService.updateCart([...this.cart]); // Cập nhật giỏ hàng thông qua service
+    // console.log(this.cart);
+  }
+
+  showCart() {
+    console.log(this.cart);
   }
 }

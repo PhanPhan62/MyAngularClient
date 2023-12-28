@@ -12,7 +12,7 @@ import { ProductComponent } from './product/product.component';
 import { HeaderComponent } from './layouts/header/header.component';
 import { FooterComponent } from './layouts/footer/footer.component';
 import { NewsletterComponent } from './layouts/newsletter/newsletter.component';
-
+import { CartService } from './cart.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,7 +31,7 @@ import { NewsletterComponent } from './layouts/newsletter/newsletter.component';
     FormsModule,
     AppRoutingModule,
   ],
-  providers: [],
+  providers: [CartService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
