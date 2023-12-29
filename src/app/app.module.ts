@@ -13,6 +13,9 @@ import { HeaderComponent } from './layouts/header/header.component';
 import { FooterComponent } from './layouts/footer/footer.component';
 import { NewsletterComponent } from './layouts/newsletter/newsletter.component';
 import { CartService } from './cart.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,8 +33,9 @@ import { CartService } from './cart.service';
     HttpClientModule,
     FormsModule,
     AppRoutingModule,
+    BrowserAnimationsModule,
   ],
-  providers: [CartService],
+  providers: [CartService, HomeComponent, ProductComponent],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

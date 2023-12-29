@@ -3,6 +3,16 @@
 <app-header></app-header>
 <!--/ End Header -->
 <section class="hero-slider">
+
+    <!-- home.component.html -->
+    <!-- <div [@slideIn] style="display: flex;" *ngIf="showAlert" class="alert alert-success" role="alert">
+        <div class="icon-alert">
+            <i class="fa-solid fa-check"></i>
+        </div>
+        <div class="text-alert" style="margin-left:5px;">
+            <span>{{ alertMessage }}</span>
+        </div>
+    </div> -->
     <!-- Single Slider -->
     <div class="single-slider">
         <div class="container">
@@ -119,7 +129,7 @@
                                                         <a title="Compare" href="#"><i class="ti-bar-chart-alt"></i><span>Add to Compare</span></a>
                                                     </div>
                                                     <div class="product-action-2">
-                                                        <a title="Add to cart" href="#">Add to cart</a>
+                                                        <a title="Add to cart" (click)="addToCart(item.id,item.TenSanPham, item.Anh, item.Gia,  1)">Add to cart</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -155,7 +165,7 @@
                                                         <a title="Compare" href="#"><i class="ti-bar-chart-alt"></i><span>Add to Compare</span></a>
                                                     </div>
                                                     <div class="product-action-2">
-                                                        <a title="Add to cart" href="#">Add to cart</a>
+                                                        <a title="Add to cart" (click)="addToCart(item.id,item.TenSanPham, item.Anh, item.Gia,  1)">Add to cart</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -191,8 +201,9 @@
                                                         <a title="Compare" href="#"><i class="ti-bar-chart-alt"></i><span>Add to Compare</span></a>
                                                     </div>
                                                     <div class="product-action-2">
-                                                        <button title="Add to cart" (click)="addToCart(item.id,item.TenSanPham, item.Anh, item.Gia,  1)">Add to cart</button>
-                                                        <button (click)="showCart()">Show Cart</button>
+                                                        <a title="Add to cart" (click)="addToCart(item.id,item.TenSanPham, item.Anh, item.Gia,  1)">Add to cart</a>
+                                                        <!-- <button title="Add to cart" >Add to cart</button>
+                                                        <button (click)="showCart()">Show Cart</button> -->
                                                     </div>
                                                 </div>
                                             </div>

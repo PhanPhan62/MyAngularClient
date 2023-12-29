@@ -2,13 +2,17 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { HeaderComponent } from '../layouts/header/header.component';
 import { CartService } from '../cart.service';
+import { slideIn } from '../layouts/app.animations';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
+  animations: [slideIn],
 })
 export class HomeComponent implements OnInit {
+  title = 'Trang chủ | Eshop';
+  main = 'this.homeComponent';
   newProduct: any[] = [];
   newProduct3: any[] = [];
   getAllBestSeller: any[] = [];
@@ -23,11 +27,12 @@ export class HomeComponent implements OnInit {
   public arrayCart: any[] = [];
   menu: any[] = [];
   loaiSanPhams: any[] = [];
+  showAlert: boolean = false;
+  alertMessage: any;
   // public sharedValue: any[] = [];
   public url = 'http://localhost:3000';
-
+  showCategory: string = 'block';
   @ViewChild(HeaderComponent) headerComponent!: HeaderComponent;
-
   constructor(private http: HttpClient, private cartService: CartService) {}
 
   ngOnInit() {
@@ -118,9 +123,17 @@ export class HomeComponent implements OnInit {
 
     this.cartService.updateCart([...this.cart]); // Cập nhật giỏ hàng thông qua service
     // console.log(this.cart);
+
+    alert(`Sản phẩm đã được thêm vào giỏ`);
+    // this.showAlert = true;
+    // this.alertMessage = `Sản phẩm đã được thêm vào giỏ`;
+    // Gọi hàm cartMini() từ HeaderComponent
+    this.callCartMiniFromHeader();
   }
 
-  showCart() {
-    console.log(this.cart);
+  callCartMiniFromHeader() {
+    // Gọi hàm cartMini() từ HeaderComponent
+    this.headerComponent.cartMini();
   }
 }
+// }

@@ -73,7 +73,7 @@
                 <div class="col-lg-2 col-md-3 col-12">
                     <div class="right-bar">
                         <!-- Search Form -->
-                        <div class="sinlge-bar" (click)="cartMini()">
+                        <div class="sinlge-bar">
                             <a href="#" class="single-icon"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
                         </div>
                         <div class="sinlge-bar">
@@ -89,7 +89,7 @@
                                 </div>
                                 <ul class="shopping-list">
                                     <li *ngFor="let item of arrayCartHeader">
-                                        <a href="#" class="remove" title="Remove this item"><i class="fa fa-remove"></i></a>
+                                        <a class="remove" (click)="deleteCart(item.productId)" title="Remove this item"><i class="fa fa-remove"></i></a>
                                         <a class="cart-img" href="#"><img src="http://localhost:3000/uploads/{{item.Anh}}" alt="{{item.TenSanPham}}"></a>
                                         <h4><a href="#">{{item.TenSanPham}}</a></h4>
                                         <p class="quantity"><b>{{item.quantity}}</b> x <span class="amount"><b>{{ item.Gia | currency: 'VND':'symbol':'1.0-2' }}</b></span></p>
@@ -121,7 +121,7 @@
         <div class="container">
             <div class="cat-nav-head">
                 <div class="row">
-                    <div class="col-lg-3">
+                    <div class="col-lg-3" [style.display]="showCategory">
                         <div class="all-category">
                             <h3 class="cat-heading"><i class="fa fa-bars" aria-hidden="true"></i>CATEGORIES</h3>
                             <ul class="main-category">
