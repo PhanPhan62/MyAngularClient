@@ -1,0 +1,7 @@
+.overlay i:hover {
+    cursor: pointer;
+}
+
+.overlay:hover {
+    cursor: pointer;
+}

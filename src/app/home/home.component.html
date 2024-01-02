@@ -118,7 +118,7 @@
                                         <div class="single-product">
                                             <div class="product-img">
                                                 <a href="product-details.html">
-                                                    <img class="default-img" src="http://localhost:3000/uploads/{{item.Anh}}" title="{{item.id}}" alt="{{item.TenSanPham}}">
+                                                    <img class="default-img" src="http://localhost:3000/uploads/{{item.Anh}}" title="{{item.TenSanPham}}" alt="{{item.TenSanPham}}">
                                                     <!-- <img class="hover-img" src="https://via.placeholder.com/550x750" alt="#"> -->
                                                     <span class="new">New</span>
                                                 </a>
@@ -134,7 +134,7 @@
                                                 </div>
                                             </div>
                                             <div class="product-content">
-                                                <h3><a href="product-details.html">{{item.TenSanPham}}</a></h3>
+                                                <h3><a (click)="redirectToProductDetail(item.id)">{{item.TenSanPham}}</a></h3>
                                                 <div class="product-price">
                                                     <span>{{ item.Gia | currency: 'VND':'symbol':'1.0-2' }}</span>
                                                 </div>
@@ -149,12 +149,11 @@
                         <div class="tab-pane fade" id="bestSeller" role="tabpanel">
                             <div class="tab-single">
                                 <div class="row">
-
                                     <div *ngFor="let item of getAllBestSeller" class="col-xl-3 col-lg-4 col-md-4 col-12">
                                         <div class="single-product">
                                             <div class="product-img">
                                                 <a href="product-details.html">
-                                                    <img class="default-img" src="http://localhost:3000/uploads/{{item.Anh}}" alt="{{item.TenSanPham}}">
+                                                    <img class="default-img" src="http://localhost:3000/uploads/{{item.Anh}}" title="{{item.TenSanPham}}" alt="{{item.TenSanPham}}">
                                                     <!-- <img class="hover-img" src="https://via.placeholder.com/550x750" alt="#"> -->
                                                     <span class="out-of-stock">Hot</span>
                                                 </a>
@@ -190,7 +189,7 @@
                                         <div class="single-product">
                                             <div class="product-img">
                                                 <a href="product-details.html">
-                                                    <img class="default-img" src="http://localhost:3000/uploads/{{item.Anh}}" alt="{{item.TenSanPham}}">
+                                                    <img class="default-img" src="http://localhost:3000/uploads/{{item.Anh}}" title="{{item.TenSanPham}}" alt="{{item.TenSanPham}}">
                                                     <!-- <img class="hover-img" src="https://via.placeholder.com/550x750" alt="#"> -->
                                                     <span class="price-dec">{{item.PhanTram}}% Off</span>
                                                 </a>
@@ -946,7 +945,7 @@
                         <div class="col-lg-6 col-md-6 col-12">
                             <div class="list-image overlay">
                                 <img src="http://localhost:3000/uploads/{{item.Anh}}" alt="{{item.TenSanPham}}">
-                                <a href="#" class="buy"><i class="fa fa-shopping-bag"></i></a>
+                                <a (click)="addToCart(item.id,item.TenSanPham, item.Anh, item.Gia, 1)" class="buy"><i class="fa fa-shopping-bag"></i></a>
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-6 col-12 no-padding">
@@ -973,7 +972,7 @@
                         <div class="col-lg-6 col-md-6 col-12">
                             <div class="list-image overlay">
                                 <img src="http://localhost:3000/uploads/{{item.Anh}}" alt="{{item.TenSanPham}}">
-                                <a href="#" class="buy"><i class="fa fa-shopping-bag"></i></a>
+                                <a (click)="addToCart(item.id,item.TenSanPham, item.Anh, item.Gia, 1)" class="buy"><i class="fa fa-shopping-bag"></i></a>
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-6 col-12 no-padding">
@@ -1000,7 +999,7 @@
                         <div class="col-lg-6 col-md-6 col-12">
                             <div class="list-image overlay">
                                 <img src="http://localhost:3000/uploads/{{item.Anh}}" alt="{{item.TenSanPham}}">
-                                <a href="#" class="buy"><i class="fa fa-shopping-bag"></i></a>
+                                <a (click)="addToCart(item.id,item.TenSanPham, item.Anh, item.Gia, 1)" class="buy"><i class="fa fa-shopping-bag"></i></a>
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-6 col-12 no-padding">
@@ -1099,51 +1098,6 @@
 </section>
 <!-- End Shop Blog  -->
 
-<!-- Start Shop Services Area -->
-<section class="shop-services section home">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-3 col-md-6 col-12">
-                <!-- Start Single Service -->
-                <div class="single-service">
-                    <i class="ti-anchor"></i>
-                    <h4>Free shiping</h4>
-                    <p>Đơn hàng trên 100,000đ</p>
-                </div>
-                <!-- End Single Service -->
-            </div>
-            <div class="col-lg-3 col-md-6 col-12">
-                <!-- Start Single Service -->
-                <div class="single-service">
-                    <i class="ti-reload"></i>
-                    <h4>Hoàn trả free</h4>
-                    <p>Bảo hành 7 ngày</p>
-                </div>
-                <!-- End Single Service -->
-            </div>
-            <div class="col-lg-3 col-md-6 col-12">
-                <!-- Start Single Service -->
-                <div class="single-service">
-                    <i class="ti-lock"></i>
-                    <h4>Thanh toán an toàn</h4>
-                    <p>Thanh toán an toàn 100%</p>
-                </div>
-                <!-- End Single Service -->
-            </div>
-            <div class="col-lg-3 col-md-6 col-12">
-                <!-- Start Single Service -->
-                <div class="single-service">
-                    <i class="ti-tag"></i>
-                    <h4>Chi phí tốt nhất</h4>
-                    <p>Giá cả hợp lý nhất</p>
-                </div>
-                <!-- End Single Service -->
-            </div>
-        </div>
-    </div>
-</section>
-<!-- End Shop Services Area -->
-
 <app-newsletter></app-newsletter>
 
 <!-- Modal -->
@@ -1237,24 +1191,24 @@
                                     <input type="text" name="quant[1]" class="input-number" data-min="1" data-max="1000" value="1">
                                     <div class="button plus">
                                         <button type="button" class="btn btn-primary btn-number" data-type="plus" data-field="quant[1]">
-													<i class="ti-plus"></i>
-												</button>
+                                            <i class="ti-plus"></i>
+                                        </button>
                                     </div>
                                 </div>
                                 <!--/ End Input Order -->
                             </div>
                             <div class="add-to-cart">
-                                <a href="#" class="btn">Add to cart</a>
+                                <a class="btn">Add to cart</a>
                                 <a href="#" class="btn min"><i class="ti-heart"></i></a>
                                 <a href="#" class="btn min"><i class="fa fa-compress"></i></a>
                             </div>
                             <div class="default-social">
                                 <h4 class="share-now">Share:</h4>
                                 <ul>
-                                    <li><a class="facebook" href="#"><i class="fa fa-facebook"></i></a></li>
-                                    <li><a class="twitter" href="#"><i class="fa fa-twitter"></i></a></li>
-                                    <li><a class="youtube" href="#"><i class="fa fa-pinterest-p"></i></a></li>
-                                    <li><a class="dribbble" href="#"><i class="fa fa-google-plus"></i></a></li>
+                                    <li><a class="facebook" href="#"><i class="fa-brands fa-facebook"></i></a></li>
+                                    <li><a class="twitter" href="#"><i class="fa-brands fa-twitter"></i></a></li>
+                                    <li><a class="youtube" href="#"><i class="fa-brands fa-youtube"></i></a></li>
+                                    <li><a class="dribbble" href="#"><i class="fa-brands fa-dribbble"></i></a></li>
                                 </ul>
                             </div>
                         </div>

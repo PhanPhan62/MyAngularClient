@@ -3,6 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { HeaderComponent } from '../layouts/header/header.component';
 import { CartService } from '../cart.service';
 import { slideIn } from '../layouts/app.animations';
+import { Router } from '@angular/router';
+import { LoginComponent } from '../login/login.component';
 
 @Component({
   selector: 'app-home',
@@ -11,8 +13,6 @@ import { slideIn } from '../layouts/app.animations';
   animations: [slideIn],
 })
 export class HomeComponent implements OnInit {
-  title = 'Trang chủ | Eshop';
-  main = 'this.homeComponent';
   newProduct: any[] = [];
   newProduct3: any[] = [];
   getAllBestSeller: any[] = [];
@@ -29,12 +29,16 @@ export class HomeComponent implements OnInit {
   loaiSanPhams: any[] = [];
   showAlert: boolean = false;
   alertMessage: any;
-  // public sharedValue: any[] = [];
+  arrayCartHeader: any[] = [];
   public url = 'http://localhost:3000';
   showCategory: string = 'block';
   @ViewChild(HeaderComponent) headerComponent!: HeaderComponent;
-  constructor(private http: HttpClient, private cartService: CartService) {}
-
+  constructor(
+    private http: HttpClient,
+    private cartService: CartService,
+    private loginComponent: LoginComponent,
+    private router: Router
+  ) {}
   ngOnInit() {
     this.fetchNewProducts();
     this.fetchNewProducts3();
@@ -78,7 +82,6 @@ export class HomeComponent implements OnInit {
       this.getAllSell3 = data;
     });
   }
-
   detailProduct(id: number) {
     this.http.get(this.url + '/getByIdProduct/' + id).subscribe((data: any) => {
       this.getByIdProduct = data;
@@ -87,7 +90,6 @@ export class HomeComponent implements OnInit {
       this.listImg = data;
     });
   }
-
   fetchMenu() {
     this.http.get(this.url + '/menu').subscribe((data: any) => {
       this.menu = data;
@@ -105,35 +107,74 @@ export class HomeComponent implements OnInit {
     Gia: any,
     quantity: number
   ) {
-    const existingItem = this.cart.find(
-      (cartItem) =>
-        cartItem.productId === productId &&
-        cartItem.TenSanPham === TenSanPham &&
-        cartItem.Anh === Anh &&
-        cartItem.Gia === Gia
-    );
+    if (this.loginComponent.login()) {
+      const existingItem = this.cart.find(
+        (cartItem) =>
+          cartItem.productId === productId &&
+          cartItem.TenSanPham === TenSanPham &&
+          cartItem.Anh === Anh &&
+          cartItem.Gia === Gia
+      );
+      if (existingItem) {
+        existingItem.quantity += quantity;
+      } else {
+        this.cart.push({ productId, TenSanPham, Anh, Gia, quantity });
+      }
+      this.cartService.updateCart([...this.cart]);
+      // console.log(this.cart);
 
-    if (existingItem) {
-      // Nếu sản phẩm đã tồn tại, tăng số lượng
-      existingItem.quantity += quantity;
+      alert(`Sản phẩm đã được thêm vào giỏ`);
+      this.callCartMiniFromHeader();
     } else {
-      // Nếu sản phẩm chưa tồn tại, thêm mới vào giỏ hàng
-      this.cart.push({ productId, TenSanPham, Anh, Gia, quantity });
+      this.router.navigate(['/login']);
+    }
+  }
+  createOrder() {
+    // Kiểm tra xem giỏ hàng có dữ liệu hay không
+    if (!this.cart || this.cart.length === 0) {
+      alert('Giỏ hàng rỗng!');
+      return;
     }
 
-    this.cartService.updateCart([...this.cart]); // Cập nhật giỏ hàng thông qua service
-    // console.log(this.cart);
+    // Tạo một mảng mới chỉ chứa các thuộc tính cần thiết từ giỏ hàng
+    const orderDetails = this.cart.map((item) => ({
+      productId: item.productId,
+      Gia: item.Gia,
+      quantity: item.quantity,
+    }));
 
-    alert(`Sản phẩm đã được thêm vào giỏ`);
-    // this.showAlert = true;
-    // this.alertMessage = `Sản phẩm đã được thêm vào giỏ`;
-    // Gọi hàm cartMini() từ HeaderComponent
-    this.callCartMiniFromHeader();
+    // Tạo đối tượng dữ liệu đơn hàng
+    const orderData = {
+      MaKhachHang: 1, // Thay thế bằng ID của khách hàng thực tế
+      chiTietDonHang: orderDetails,
+    };
+
+    // Gửi đơn hàng đến server
+    this.http.post('http://localhost:3000/orders', orderData).subscribe(
+      (response: any) => {
+        alert('Thanh toán thành công');
+        console.log('Đã thêm đơn hàng:', response);
+        // orderData=[];
+        this.headerComponent.resetHeaderCart();
+        // Xử lý thành công
+      },
+      (error) => {
+        console.error('Lỗi khi thêm đơn hàng:', error);
+        // Xử lý lỗi
+      }
+    );
   }
 
   callCartMiniFromHeader() {
-    // Gọi hàm cartMini() từ HeaderComponent
     this.headerComponent.cartMini();
   }
+  // detail:any[]=[];
+  redirectToProductDetail(productId: string): void {
+    // this.http.get(this.url + '/getByIdProduct/' +productId).subscribe((data: any) => {
+    //   this.detail = data;
+    //   console.log(this.detail);
+    // });
+    this.router.navigate(['/productDetail', productId]);
+  }
+  
 }
-// }

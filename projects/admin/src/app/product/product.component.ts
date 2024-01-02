@@ -116,14 +116,16 @@ export class ProductComponent implements OnInit {
       formData.append('MaNSX', this.sanpham.MaNSX);
       formData.append('MaDonViTinh', this.sanpham.MaDonViTinh);
       formData.append('Gia', this.sanpham.Gia);
-      this.selectedFiles = [];
+      for (const file of this.selectedFiles) {
+        formData.append('Anh', file);
+      }
       setTimeout(() => {
         this.successMessageVisible = false;
         this.fetchSanPhams();
       }, 4000);
 
       this.http
-        .post(this.url + '/product/update/' + this.sanpham.id, formData)
+        .patch(this.url + '/admin/product/update/' + this.sanpham.id, formData)
         .subscribe(() => {
           this.isEditing = false;
           this.editItemId = null;

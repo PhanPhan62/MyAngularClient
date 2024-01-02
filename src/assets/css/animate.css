@@ -1,6 +1,10 @@
 /* Animate CSS*/
 
 @charset "UTF-8";
+.product-content h3 a:hover {
+    cursor: pointer;
+}
+
 .alert {
     /* width: 100%; */
     height: 50px;

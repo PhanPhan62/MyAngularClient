@@ -9,11 +9,8 @@ export class AppComponent implements AfterViewInit {
   title = 'admin';
   //  ngAfterViewInit() {}
   scriptPaths: string[] = [
-    '/assets/js/Chart.min.js',
     '/assets/js/dynamic-pie-chart.js',
-    '/assets/js/moment.min.js',
     '/assets/js/fullcalendar.js',
-    '/assets/js/jvectormap.min.js',
     '/assets/js/world-merc.js',
     '/assets/js/polyfill.js',
     '/assets/js/main.js',

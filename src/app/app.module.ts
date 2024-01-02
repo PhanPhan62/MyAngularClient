@@ -14,7 +14,9 @@ import { FooterComponent } from './layouts/footer/footer.component';
 import { NewsletterComponent } from './layouts/newsletter/newsletter.component';
 import { CartService } from './cart.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import { CartComponent } from './cart/cart.component';
+import { CheckoutComponent } from './checkout/checkout.component';
+// import { OrdersComponent } from './projects/admin/orders/orders.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +28,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     HeaderComponent,
     FooterComponent,
     NewsletterComponent,
+    CartComponent,
+    CheckoutComponent,
+    // OrdersComponent,
   ],
   imports: [
     BrowserModule,
@@ -35,7 +40,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AppRoutingModule,
     BrowserAnimationsModule,
   ],
-  providers: [CartService, HomeComponent, ProductComponent],
+  providers: [
+    CartService,
+    HomeComponent,
+    ProductComponent,
+    LoginComponent,
+    CartComponent
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

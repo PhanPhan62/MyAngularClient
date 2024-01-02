@@ -5,22 +5,32 @@ import { HomeComponent } from './home/home.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
 import { LoginComponent } from './login/login.component';
 import { ProductComponent } from './product/product.component';
+import { CartComponent } from './cart/cart.component';
 
 
 const routes: Routes = [
   {
+    title: 'Trang chủ',
     path: '',
     component: HomeComponent,
   },
   {
+    title: 'Chi tiết sản phẩm',
     path: 'productDetail/:id',
     component: ProductDetailComponent,
   },
   {
+    title: 'Sản phẩm',
     path: 'product',
     component: ProductComponent,
   },
   {
+    title: 'Giỏ hàng',
+    path: 'cart',
+    component: CartComponent,
+  },
+  {
+    title: 'Đăng nhâp',
     path: 'login',
     component: LoginComponent,
   },

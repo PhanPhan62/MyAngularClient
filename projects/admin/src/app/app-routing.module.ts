@@ -7,9 +7,27 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgxPaginationModule } from 'ngx-pagination';
 
 import { AppComponent } from './app.component';
-const routes: Routes = [{
-  path: 'admin/product', component: ProductComponent
-}];
+import { OrdersComponent } from './orders/orders.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+
+
+const routes: Routes = [
+  {
+    title: 'Quản lý Sản phẩm',
+    path: 'admin/product',
+    component: ProductComponent,
+  },
+  {
+    title: 'Quản lý',
+    path: '',
+    component: DashboardComponent,
+  },
+  {
+    title: 'Quản lý Đơn hàng',
+    path: 'admin/orders',
+    component: OrdersComponent,
+  },
+];
 
 @NgModule({
   imports: [
