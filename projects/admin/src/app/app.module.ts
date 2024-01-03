@@ -13,6 +13,7 @@ import { MessagesModule } from 'primeng/messages';
 import { MessageModule } from 'primeng/message';
 import { OrdersComponent } from './orders/orders.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { GalleriaModule } from 'primeng/galleria';
 @NgModule({
   declarations: [AppComponent, ProductComponent, OrdersComponent, DashboardComponent],
   imports: [
@@ -24,6 +25,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     BrowserAnimationsModule,
     TableModule,
     MessagesModule,
+    GalleriaModule,
     MessageModule
   ],
   providers: [],

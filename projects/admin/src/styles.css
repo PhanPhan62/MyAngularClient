@@ -26,3 +26,7 @@
 .cssDelete:hover i {
     color: rgb(0, 255, 115);
 }
+
+ul li a {
+    text-decoration: none;
+}

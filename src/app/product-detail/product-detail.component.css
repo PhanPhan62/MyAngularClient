@@ -1,0 +1,21 @@
+/* Add your custom styles here */
+
+carousel {
+    width: 100px;
+}
+
+carousel img {
+    width: 100pc;
+    left: 0;
+}
+
+.detail-card {
+    display: flex;
+}
+
+.carousel-caption {
+    /* width: 100%; */
+    background: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    padding: 10px;
+}

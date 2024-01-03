@@ -86,7 +86,8 @@ export class HomeComponent implements OnInit {
     this.http.get(this.url + '/getByIdProduct/' + id).subscribe((data: any) => {
       this.getByIdProduct = data;
     });
-    this.http.get(this.url + '/listImg/' + id).subscribe((data: any) => {
+
+    this.http.get(`${this.url}/listImg/${id}`).subscribe((data: any) => {
       this.listImg = data;
     });
   }
@@ -121,7 +122,7 @@ export class HomeComponent implements OnInit {
         this.cart.push({ productId, TenSanPham, Anh, Gia, quantity });
       }
       this.cartService.updateCart([...this.cart]);
-      // console.log(this.cart);
+      console.log(this.cart);
 
       alert(`Sản phẩm đã được thêm vào giỏ`);
       this.callCartMiniFromHeader();
@@ -141,6 +142,7 @@ export class HomeComponent implements OnInit {
       productId: item.productId,
       Gia: item.Gia,
       quantity: item.quantity,
+      ThanhTien: item.Gia * item.quantity,
     }));
 
     // Tạo đối tượng dữ liệu đơn hàng
@@ -168,12 +170,7 @@ export class HomeComponent implements OnInit {
   callCartMiniFromHeader() {
     this.headerComponent.cartMini();
   }
-  // detail:any[]=[];
   redirectToProductDetail(productId: string): void {
-    // this.http.get(this.url + '/getByIdProduct/' +productId).subscribe((data: any) => {
-    //   this.detail = data;
-    //   console.log(this.detail);
-    // });
     this.router.navigate(['/productDetail', productId]);
   }
   

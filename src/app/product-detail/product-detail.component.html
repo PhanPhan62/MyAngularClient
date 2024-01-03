@@ -8,8 +8,17 @@
             <div class="col-12">
                 <div class="bread-inner">
                     <ul class="bread-list">
-                        <li><a href="index1.html">Home<i class="ti-arrow-right"></i></a></li>
-                        <li class="active"><a>Chi Tiết Sản Phẩm</a></li>
+                        <li>
+                            <a href="/">Home<i class="ti-arrow-right"></i></a>
+                        </li>
+                        <li class="active">
+                            <a>Chi Tiết Sản Phẩm<i class="ti-arrow-right"></i>
+                            </a>
+                        </li>
+                        <li class="active">
+                            <a>Chi Tiết Sản Phẩm
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -18,58 +27,144 @@
 </div>
 
 
-<div class="container">
-    <div *ngIf="getByIdProduct">
-        <h2>{{ getByIdProduct.TenSanPham }}</h2>
-        <p>{{ getByIdProduct.MoTaSanPham }}</p>
-        <p>Giá: {{ getByIdProduct.Gia | currency:'USD':'symbol':'1.2-2' }}</p>
+<div class="modal-body" *ngIf="this.getByIdProduct[0]">
+    <!-- <div class="modal-body"> -->
+    <div class="row no-gutters">
+        <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+            <!-- Product Slider -->
+            <div class="product-gallery">
+                <div *ngIf="listImg">
+                    <carousel style="cursor: pointer;">
+                        <slide *ngFor="let image of listImg">
+                            <img [src]="'http://localhost:3000/uploads/' + image.Anh" alt="{{ image.caption }}">
+                            <!-- <div class="carousel-caption">
+                                        sdvsdv
+                                    </div> -->
+                        </slide>
+                    </carousel>
+                </div>
+                <!-- <div class="quickview-slider-active">
 
-        <!-- Hiển thị ảnh sản phẩm -->
-        <div *ngFor="let img of listImg">
-            <img [src]="img.url" alt="Product Image" />
+                                <div class="single-slider">
+                                    <img src="https://via.placeholder.com/569x528" alt="#">
+                                </div>
+                                <div class="single-slider">
+                                    <img src="https://via.placeholder.com/569x528" alt="#">
+                                </div>
+                                <div class="single-slider">
+                                    <img src="https://via.placeholder.com/569x528" alt="#">
+                                </div>
+                                <div class="single-slider">
+                                    <img src="https://via.placeholder.com/569x528" alt="#">
+                                </div>
+                            </div> -->
+            </div>
+            <!-- End Product slider -->
         </div>
-
-        <!-- Thêm các thông tin khác nếu cần -->
+        <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+            <div class="quickview-content">
+                <h2>{{this.getByIdProduct[0].TenSanPham}}</h2>
+                <div class="quickview-ratting-review">
+                    <div class="quickview-ratting-wrap">
+                        <div class="quickview-ratting">
+                            <i class="yellow fa fa-star"></i>
+                            <i class="yellow fa fa-star"></i>
+                            <i class="yellow fa fa-star"></i>
+                            <i class="yellow fa fa-star"></i>
+                            <i class="yellow fa fa-star"></i>
+                        </div>
+                        <a href="#"> (1087 khách hàng đánh giá)</a>
+                    </div>
+                    <div class="quickview-stock">
+                        <span><i class="fa fa-check-circle-o"></i> Còn hàng</span>
+                    </div>
+                </div>
+                <h3>{{ this.getByIdProduct[0].Gia | currency: 'VND':'symbol':'1.0-2' }}</h3>
+                <div class="quickview-peragraph">
+                    <p>{{ this.getByIdProduct[0].MoTaSanPham}}</p>
+                </div>
+                <!-- <div class="size">
+                                <div class="row">
+                                    <div class="col-lg-6 col-12">
+                                        <h5 class="title">Size</h5>
+                                        <select>
+													<option selected="selected">s</option>
+													<option>m</option>
+													<option>l</option>
+													<option>xl</option>
+												</select>
+                                    </div>
+                                    <div class="col-lg-6 col-12">
+                                        <h5 class="title">Color</h5>
+                                        <select>
+													<option selected="selected">orange</option>
+													<option>purple</option>
+													<option>black</option>
+													<option>pink</option>
+												</select>
+                                    </div>
+                                </div>
+                            </div> -->
+                <div class="quantity">
+                    <!-- Input Order -->
+                    <div class="input-group">
+                        <div class="button minus">
+                            <button type="button" class="btn btn-primary btn-number" disabled="disabled" data-type="minus" data-field="quant[1]">
+													<i class="ti-minus"></i>
+												</button>
+                        </div>
+                        <input type="text" name="quant[1]" class="input-number" data-min="1" data-max="1000" value="1">
+                        <div class="button plus">
+                            <button type="button" class="btn btn-primary btn-number" data-type="plus" data-field="quant[1]">
+                                            <i class="ti-plus"></i>
+                                        </button>
+                        </div>
+                    </div>
+                    <!--/ End Input Order -->
+                </div>
+                <div class="add-to-cart">
+                    <a class="btn">Add to cart</a>
+                    <a href="#" class="btn min"><i class="ti-heart"></i></a>
+                    <a href="#" class="btn min"><i class="fa fa-compress"></i></a>
+                </div>
+                <div class="default-social">
+                    <h4 class="share-now">Share:</h4>
+                    <ul>
+                        <li><a class="facebook" href="#"><i class="fa-brands fa-facebook"></i></a></li>
+                        <li><a class="twitter" href="#"><i class="fa-brands fa-twitter"></i></a></li>
+                        <li><a class="youtube" href="#"><i class="fa-brands fa-youtube"></i></a></li>
+                        <li><a class="dribbble" href="#"><i class="fa-brands fa-dribbble"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
     </div>
-
-    <!-- Nếu không có thông tin sản phẩm -->
-    <div *ngIf="!getByIdProduct">
-        <p>Sản phẩm không tồn tại hoặc có lỗi khi tải thông tin.</p>
-    </div>
-
-    <!--   <table class="table" *ngIf="getByIdProduct">
-        <thead>
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">First</th>
-                <th scope="col">Last</th>
-                <th scope="col">Handle</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-            </tr>
-            <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-            </tr>
-            <tr>
-                <th scope="row">3</th>
-                <td colspan="2">Larry the Bird</td>
-                <td>@twitter</td>
-            </tr>
-        </tbody>
-    </table>-->
 </div>
-<!-- End Breadcrumbs -->
+<!-- <app-newsletter></app-newsletter> -->
 
-<!-- Modal end -->
-<h3>skjdkjsdf</h3>
-<app-newsletter></app-newsletter>
+<!-- Start Shop Blog  -->
+<!-- <section class="shop-blog section">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="section-title">
+                    <h2>Có thể bạn sẽ thích</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 col-md-6 col-12">
+                <div class="shop-single-blog">
+                    <img src="https://via.placeholder.com/370x300" alt="#">
+                    <div class="content">
+                        <p class="date">22 July , 2020. Monday</p>
+                        <a href="#" class="title">Sed adipiscing ornare.</a>
+                        <a href="#" class="more-btn">Continue Reading</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section> -->
+<!-- End Shop Blog  -->
 <app-footer></app-footer>

@@ -1,1 +1,196 @@
-<p>orders works!</p>
+<section class="section">
+    <div class="container-fluid">
+        <!-- ========== title-wrapper start ========== -->
+        <div class="title-wrapper pt-20">
+
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <!-- <div *ngIf="successMessageVisible" class="alert-box success-alert  alert-custom">
+                        <div class="alert">
+                            <p class="text-medium">
+                                Sản phẩm đã được thêm thành công.
+                            </p>
+                        </div>
+                    </div> -->
+                </div>
+                <!-- end col -->
+                <div class="col-md-6">
+                    <div class="breadcrumb-wrapper">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item">
+                                    <a href="">Quản Lý</a>
+                                </li>
+                                <li class="breadcrumb-item active" aria-current="page">
+                                    {{title}}
+                                </li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card-style mb-30">
+                    <div class="
+                            title
+                            d-flex
+                            flex-wrap
+                            align-items-center
+                            justify-content-between
+                        ">
+                        <div class="left">
+                            <h6 class="text-medium mb-30">Thông tin {{title}}</h6>
+                        </div>
+                        <div class="right">
+                            <div class="select-style-1" style="color: #fff;">
+                                <button (click)="Create()" type="button" class="btn-add main-btn light-btn-outline rounded-md btn-hover" data-toggle="modal" data-target="#addModal">
+                                    <i  class="btn-add lni lni-circle-plus trans"></i>Thêm mới</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <p-table [value]="orders" [paginator]="true" [rows]="21" [showCurrentPageReport]="true" [tableStyle]="{ 'min-width': '60rem','max-width': '65rem' }" currentPageReportTemplate="Hiển thị {first} đến {last} của {totalRecords} sản phẩm">
+                            <ng-template pTemplate="header">
+                                <tr>
+                                    <th>
+                                        <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                                    </th>
+                                    <th pSortableColumn="id">
+                                        <div class="flex align-items-center">
+                                            Đơn hàng
+                                            <p-sortIcon field="id"></p-sortIcon>
+                                        </div>
+                                    </th>
+
+                                    <th pSortableColumn="Soluong">
+                                        <div class="flex align-items-center">
+                                            Số lượng
+                                            <p-sortIcon field="Soluong"></p-sortIcon>
+                                        </div>
+                                    </th>
+                                    <th pSortableColumn="price">
+                                        <div class="flex align-items-center">
+                                            Giá Mua hàng
+                                            <p-sortIcon field="price"></p-sortIcon>
+                                        </div>
+                                    </th>
+                                    <th pSortableColumn="ThanhTien">
+                                        <div class="flex align-items-center">
+                                            Thanh toán Đơn hàng
+                                            <p-sortIcon field="ThanhTien"></p-sortIcon>
+                                        </div>
+                                    </th>
+                                    <!--<th pSortableColumn="TenSanPham">
+                                        <div class="flex align-items-center">
+                                            Sản phẩm
+                                            <p-sortIcon field="TenSanPham"></p-sortIcon>
+                                        </div>
+                                    </th>
+                                    <th pSortableColumn="TenLoai">
+                                        <div class="flex align-items-center">
+                                            Tên Loại
+                                            <p-sortIcon field="TenLoai"></p-sortIcon>
+                                        </div>
+                                    </th>
+                                    <th pSortableColumn="Gia">
+                                        <div class="flex align-items-center">
+                                            Giá
+                                            <p-sortIcon field="Gia"></p-sortIcon>
+                                        </div>
+                                    </th>
+                                     <th pSortableColumn="TenNSX">
+                                        <div class="flex align-items-center">
+                                            Nhà cung cấp
+                                            <p-sortIcon field="TenNSX"></p-sortIcon>
+                                        </div>
+                                    </th> -->
+                                </tr>
+                            </ng-template>
+                            <ng-template pTemplate="body" let-item>
+                                <tr>
+                                    <td>
+                                        <p-tableCheckbox [value]="item"></p-tableCheckbox>
+                                    </td>
+                                    <td>
+                                        <p class="text-sm">{{ item.id }}</p>
+                                    </td>
+                                    <!-- <td>
+                                        <div class="product">
+                                            <div class="image">
+                                                <img style="width: 100px; height: 100px; object-fit: cover; object-position: center;" src="http://localhost:3000/uploads/{{ item.Anh }}" alt="{{ item.TenSanPham }}" />
+                                            </div>
+                                            <p class="text-sm">{{ item.TenSanPham }}</p>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <p class="text-sm">{{ item.TenLoai }}</p>
+                                    </td>-->
+                                    <td>
+                                        <p class="text-sm">{{ item.SoLuong }}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-sm">{{ item.GiaMua | currency: 'VND':'symbol':'1.0-2' }}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-sm">{{ item.ThanhTien | currency: 'VND':'symbol':'1.0-2' }}</p>
+                                    </td>
+                                    <!-- <td>
+                                        <p class="text-sm">{{ item.TenNSX }}</p>
+                                    </td> -->
+                                    <td>
+                                        <div class="action justify-content-end">
+                                            <button class="more-btn ml-10 dropdown-toggle" id="moreAction1" data-bs-toggle="dropdown" aria-expanded="false">
+                                                <i class="lni lni-more-alt"></i>
+                                            </button>
+                                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="moreAction1">
+                                                <li class="dropdown-item">
+                                                    <div data-toggle="modal" data-target="#addModal" (click)="Edit(item)" class="text-gray cssDelete"><i class="lni lni-pencil trans"></i>Sửa</div>
+                                                </li>
+                                                <li class="dropdown-item">
+                                                    <div class="text-gray cssDelete" (click)="deleteProduct(item.id, item.TenSanPham)">
+                                                        <i class="lni lni-trash-can trans color-del"></i>Xóa
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </ng-template>
+                        </p-table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<footer class="footer">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6 order-last order-md-first">
+                <div class="copyright text-center text-md-start">
+                    <p class="text-sm">
+                        Xây dựng website bán hàng thời trang nữ by
+                        <a href="https://plainadmin.com" rel="nofollow" target="_blank">
+                            Phan Thành Công - 12520092
+                        </a>
+                    </p>
+                </div>
+            </div>
+            <!-- end col-->
+            <div class="col-md-6">
+                <div class="
+                  terms
+                  d-flex
+                  justify-content-center justify-content-md-end
+                ">
+                    <!-- <a href="#0" class="text-sm">Term & Conditions</a>
+                    <a href="#0" class="text-sm ml-15">Privacy & Policy</a> -->
+                </div>
+            </div>
+        </div>
+        <!-- end row -->
+    </div>
+    <!-- end container -->
+</footer>

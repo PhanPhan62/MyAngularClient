@@ -17,7 +17,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CartComponent } from './cart/cart.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 // import { OrdersComponent } from './projects/admin/orders/orders.component';
-
+import { GalleriaModule } from 'primeng/galleria';
+import { CarouselModule } from 'ngx-bootstrap/carousel';
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,13 +40,15 @@ import { CheckoutComponent } from './checkout/checkout.component';
     FormsModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    GalleriaModule,
+    CarouselModule.forRoot(),
   ],
   providers: [
     CartService,
     HomeComponent,
     ProductComponent,
     LoginComponent,
-    CartComponent
+    CartComponent,
   ],
   bootstrap: [AppComponent],
 })

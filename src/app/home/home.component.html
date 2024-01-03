@@ -20,15 +20,15 @@
                 <div class="col-lg-9 offset-lg-3 col-12">
                     <div class="text-inner">
                         <div class="row">
-                            <div class="col-lg-7 col-12">
+                            <!-- <div class="col-lg-7 col-12">
                                 <div class="hero-text">
                                     <h1><span>UP TO 50% OFF </span>Shirt For Man</h1>
                                     <p>Maboriosam in a nesciung eget magnae <br> dapibus disting tloctio in the find it pereri <br> odiy maboriosm.</p>
                                     <div class="button">
-                                        <a href="#" class="btn">Shop Now!</a>
+                                        <a href="#" class="btn">Mua ngay!</a>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>
@@ -46,11 +46,11 @@
             <!-- Single Banner  -->
             <div class="col-lg-4 col-md-6 col-12">
                 <div class="single-banner">
-                    <img src="https://via.placeholder.com/600x370" alt="#">
+                    <img style="height:300px;" src="http://localhost:3000/uploads/event/banner1.png" alt="#">
                     <div class="content">
-                        <p>Man's Collectons</p>
-                        <h3>Summer travel <br> collection</h3>
-                        <a href="#">Discover Now</a>
+                        <p>Bộ sưu tập váy</p>
+                        <h3>Mùa hè sôi động</h3>
+                        <a href="#">Khám phá ngay</a>
                     </div>
                 </div>
             </div>
@@ -58,11 +58,11 @@
             <!-- Single Banner  -->
             <div class="col-lg-4 col-md-6 col-12">
                 <div class="single-banner">
-                    <img src="https://via.placeholder.com/600x370" alt="#">
+                    <img style="height:300px;" src="http://localhost:3000/uploads/event/banner2.png" alt="#">
                     <div class="content">
-                        <p>Bag Collectons</p>
-                        <h3>Awesome Bag <br> 2020</h3>
-                        <a href="#">Shop Now</a>
+                        <p>Bộ sưu tập túi sách</p>
+                        <h3>Túi sách thời trang<br> 2020</h3>
+                        <a href="#">Mua ngay</a>
                     </div>
                 </div>
             </div>
@@ -70,11 +70,11 @@
             <!-- Single Banner  -->
             <div class="col-lg-4 col-12">
                 <div class="single-banner tab-height">
-                    <img src="https://via.placeholder.com/600x370" alt="#">
+                    <img style="height:300px;" src="http://localhost:3000/uploads/event/banner4.png" alt="#">
                     <div class="content">
-                        <p>Flash Sale</p>
-                        <h3>Mid Season <br> Up to <span>40%</span> Off</h3>
-                        <a href="#">Discover Now</a>
+                        <p>Bộ sưu tập áo thời trang</p>
+                        <h3>Giữa mùa<br> giảm tới <span>40%</span></h3>
+                        <a href="#">Khám phá ngay</a>
                     </div>
                 </div>
             </div>
@@ -117,7 +117,7 @@
                                     <div *ngFor="let item of newProduct" class="col-xl-3 col-lg-4 col-md-4 col-12">
                                         <div class="single-product">
                                             <div class="product-img">
-                                                <a href="product-details.html">
+                                                <a (click)="redirectToProductDetail(item.id)">
                                                     <img class="default-img" src="http://localhost:3000/uploads/{{item.Anh}}" title="{{item.TenSanPham}}" alt="{{item.TenSanPham}}">
                                                     <!-- <img class="hover-img" src="https://via.placeholder.com/550x750" alt="#"> -->
                                                     <span class="new">New</span>
@@ -152,7 +152,7 @@
                                     <div *ngFor="let item of getAllBestSeller" class="col-xl-3 col-lg-4 col-md-4 col-12">
                                         <div class="single-product">
                                             <div class="product-img">
-                                                <a href="product-details.html">
+                                                <a (click)="redirectToProductDetail(item.id)">
                                                     <img class="default-img" src="http://localhost:3000/uploads/{{item.Anh}}" title="{{item.TenSanPham}}" alt="{{item.TenSanPham}}">
                                                     <!-- <img class="hover-img" src="https://via.placeholder.com/550x750" alt="#"> -->
                                                     <span class="out-of-stock">Hot</span>
@@ -169,7 +169,7 @@
                                                 </div>
                                             </div>
                                             <div class="product-content">
-                                                <h3><a href="product-details.html">{{item.TenSanPham}}</a></h3>
+                                                <h3><a (click)="redirectToProductDetail(item.id)">{{item.TenSanPham}}</a></h3>
                                                 <div class="product-price">
                                                     <span>{{ item.Gia | currency: 'VND':'symbol':'1.0-2' }}</span>
                                                 </div>
@@ -188,7 +188,7 @@
                                     <div *ngFor="let item of getAllSell" class="col-xl-3 col-lg-4 col-md-4 col-12">
                                         <div class="single-product">
                                             <div class="product-img">
-                                                <a href="product-details.html">
+                                                <a (click)="redirectToProductDetail(item.id)">
                                                     <img class="default-img" src="http://localhost:3000/uploads/{{item.Anh}}" title="{{item.TenSanPham}}" alt="{{item.TenSanPham}}">
                                                     <!-- <img class="hover-img" src="https://via.placeholder.com/550x750" alt="#"> -->
                                                     <span class="price-dec">{{item.PhanTram}}% Off</span>
@@ -207,7 +207,7 @@
                                                 </div>
                                             </div>
                                             <div class="product-content">
-                                                <h3><a href="product-details.html">{{item.TenSanPham}}</a></h3>
+                                                <h3><a (click)="redirectToProductDetail(item.id)">{{item.TenSanPham}}</a></h3>
                                                 <div class="product-price">
                                                     <span class="old">{{ item.Gia | currency: 'VND':'symbol':'1.0-2' }}</span>
                                                     <br>
@@ -895,11 +895,11 @@
             <!-- Single Banner  -->
             <div class="col-lg-6 col-md-6 col-12">
                 <div class="single-banner">
-                    <img src="https://via.placeholder.com/600x370" alt="#">
+                    <img src="http://localhost:3000/uploads/event/banner4.png" alt="#">
                     <div class="content">
-                        <p>Man's Collectons</p>
-                        <h3>Man's items <br>Up to<span> 50%</span></h3>
-                        <a href="#">Shop Now</a>
+                        <p>Bộ sưu tập Váy</p>
+                        <h3>Sản phẩm <br>giảm từ<span> 50%</span></h3>
+                        <a href="#">Mua ngay</a>
                     </div>
                 </div>
             </div>
@@ -907,11 +907,11 @@
             <!-- Single Banner  -->
             <div class="col-lg-6 col-md-6 col-12">
                 <div class="single-banner">
-                    <img src="https://via.placeholder.com/600x370" alt="#">
+                    <img src="http://localhost:3000/uploads/event/banner5.png" alt="#">
                     <div class="content">
                         <p>shoes women</p>
-                        <h3>mid season <br> up to <span>70%</span></h3>
-                        <a href="#" class="btn">Shop Now</a>
+                        <h3>mid season <br> giảm từ <span>70%</span></h3>
+                        <a href="#" class="btn">Mua ngay</a>
                     </div>
                 </div>
             </div>
@@ -922,7 +922,7 @@
 <!-- End Midium Banner -->
 
 <!-- Start Most Popular -->
-<div class=" section">
+<div class=" section" style="height: 0;">
 
 </div>
 <!-- End Most Popular Area -->
@@ -950,7 +950,7 @@
                         </div>
                         <div class="col-lg-6 col-md-6 col-12 no-padding">
                             <div class="content">
-                                <h4 class="title"><a href="#">{{item.TenSanPham}}</a></h4>
+                                <h4 class="title"><a (click)="redirectToProductDetail(item.id)">{{item.TenSanPham}}</a></h4>
                                 <p class="price with-discount">{{ item.Gia | currency: 'VND':'symbol':'1.0-2' }}</p>
                             </div>
                         </div>
@@ -977,7 +977,7 @@
                         </div>
                         <div class="col-lg-6 col-md-6 col-12 no-padding">
                             <div class="content">
-                                <h5 class="title"><a href="#">{{item.TenSanPham}}</a></h5>
+                                <h5 class="title"><a (click)="redirectToProductDetail(item.id)">{{item.TenSanPham}}</a></h5>
                                 <p class="price with-discount">{{ item.Gia | currency: 'VND':'symbol':'1.0-2' }}</p>
                             </div>
                         </div>
@@ -1027,13 +1027,14 @@
                         <img style="width: 60%; transform: translateX(30%)" src="https://www.tonychaaya.com/wp-content/uploads/2020/10/Tony-Chaaya-haute-couture-W266_02.jpg" alt="#">
                     </div>
                 </div>
-                <div class="col-lg-6 col-12 padding-left">
+                <div class="col-lg-6 col-12 padding-left" style="transform: translateY(-90px);">
                     <div class="content">
                         <div class="heading-block">
-                            <p class="small-title">Deal of day</p>
-                            <h3 class="title">Beatutyful dress for women</h3>
-                            <p class="text">Suspendisse massa leo, vestibulum cursus nulla sit amet, frungilla placerat lorem. Cars fermentum, sapien. </p>
-                            <h1 class="price">$1200 <s>$1890</s></h1>
+                            <p class="small-title">Giao dịch trong ngày</p>
+                            <h3 class="title">Váy cho phái đẹp </h3>
+                            <p class="text">Khám phá những điều mới mẻ - thế giới đầy bí ẩn đang chờ bạn khám phá!</p>
+                            <h3 class="price">Năm mới bình an</h3>
+                            <h1 class="price">đ1.200.000 <s>đ1.890.000</s></h1>
                             <div class="coming-time">
                                 <div class="clearfix" data-countdown="2024/02/10"></div>
                             </div>
@@ -1046,57 +1047,7 @@
 </section>
 <!-- /End Cowndown Area -->
 
-<!-- Start Shop Blog  -->
-<section class="shop-blog section">
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <div class="section-title">
-                    <h2>From Our Blog</h2>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-4 col-md-6 col-12">
-                <!-- Start Single Blog  -->
-                <div class="shop-single-blog">
-                    <img src="https://via.placeholder.com/370x300" alt="#">
-                    <div class="content">
-                        <p class="date">22 July , 2020. Monday</p>
-                        <a href="#" class="title">Sed adipiscing ornare.</a>
-                        <a href="#" class="more-btn">Continue Reading</a>
-                    </div>
-                </div>
-                <!-- End Single Blog  -->
-            </div>
-            <div class="col-lg-4 col-md-6 col-12">
-                <!-- Start Single Blog  -->
-                <div class="shop-single-blog">
-                    <img src="https://via.placeholder.com/370x300" alt="#">
-                    <div class="content">
-                        <p class="date">22 July, 2020. Monday</p>
-                        <a href="#" class="title">Man’s Fashion Winter Sale</a>
-                        <a href="#" class="more-btn">Continue Reading</a>
-                    </div>
-                </div>
-                <!-- End Single Blog  -->
-            </div>
-            <div class="col-lg-4 col-md-6 col-12">
-                <!-- Start Single Blog  -->
-                <div class="shop-single-blog">
-                    <img src="https://via.placeholder.com/370x300" alt="#">
-                    <div class="content">
-                        <p class="date">22 July, 2020. Monday</p>
-                        <a href="#" class="title">Women Fashion Festive</a>
-                        <a href="#" class="more-btn">Continue Reading</a>
-                    </div>
-                </div>
-                <!-- End Single Blog  -->
-            </div>
-        </div>
-    </div>
-</section>
-<!-- End Shop Blog  -->
+
 
 <app-newsletter></app-newsletter>
 
@@ -1113,26 +1064,16 @@
                     <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
                         <!-- Product Slider -->
                         <div class="product-gallery">
-                            <div class="quickview-slider-active">
-                                <div class="single-slider" *ngFor="let item of listImg">
-                                    <img src="http://localhost:3000/uploads/{{item.Anh}}" alt="{{this.getByIdProduct[0].TenSanPham}}">
-                                </div>
+                            <div *ngIf="listImg">
+                                <carousel style="cursor: pointer;">
+                                    <slide *ngFor="let image of listImg">
+                                        <img [src]="'http://localhost:3000/uploads/' + image.Anh" alt="{{ image.caption }}">
+                                        <!-- <div class="carousel-caption">
+                                        sdvsdv
+                                    </div> -->
+                                    </slide>
+                                </carousel>
                             </div>
-                            <!-- <div class="quickview-slider-active">
-
-                                <div class="single-slider">
-                                    <img src="https://via.placeholder.com/569x528" alt="#">
-                                </div>
-                                <div class="single-slider">
-                                    <img src="https://via.placeholder.com/569x528" alt="#">
-                                </div>
-                                <div class="single-slider">
-                                    <img src="https://via.placeholder.com/569x528" alt="#">
-                                </div>
-                                <div class="single-slider">
-                                    <img src="https://via.placeholder.com/569x528" alt="#">
-                                </div>
-                            </div> -->
                         </div>
                         <!-- End Product slider -->
                     </div>

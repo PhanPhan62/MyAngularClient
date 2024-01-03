@@ -1469,7 +1469,7 @@ Version:1.0
 
 .hero-slider .single-slider {
     height: auto;
-    background-image: url('https://mundo-creole.com/wp-content/uploads/2021/12/Black-White-Modern-Fashion-Sale-Youtube-Display-Ad-900-x-200-px-1900-x-400-px-1900-x-700-px-1900-x-600-px-1900-x-600-px-1920-x-1080-px10.jpg');
+    background-image: url('http://localhost:3000/uploads/event/banner.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
